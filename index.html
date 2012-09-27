@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="EN" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<body>
+	<!--<h1>It works!</h1>
+	<p>This is the default web page for this server. The web server software is running but no content has been added, yet.</p>-->
+
+<br><?php echo date('l, F jS, Y'); ?>
+
+<!--<?php echo phpinfo(); ?>-->
+<?php 
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE) {
+	echo 'You are using IE';
+}else{
+	echo 'You are not using IE';
+}
+ ?>
+
+	<form action="test.php" method="post">
+	 <p>Your name: <input type="text" name="name" /></p>
+	 <p>Your age: <input type="text" name="age" /></p>
+	 <p><input type="submit" /></p>
+	</form>
+
+</body>
+
+
+</html>
