@@ -1,28 +1,21 @@
-<?php
 
-	$HTML_Header = "<html><head><title>".$_POST['pagename']."
-</title>";
-	$HTML_Style = 
-	'<style type="text/css">
-		body {
-			background-color = "'.$_POST['bgcolor'].'";
-			color = "'.$_POST['fontcolor'].'";
-		}
-	</style>'; 
-
-	$HTML_Content = "</head><body><h1><center>".$_POST['content']."</center><h1><br /><hr />"; 
-	$HTML_Footer =  "</body></html>"; 
-
-	$newpage = "$_POST['pagename'].html";
-	$handle = fopen( '$newpage', 'w' );
-	
-	fwrite($handle, $HTML_Header);
-	fwrite($handle, $HTML_Style);
-	fwrite($handle, $HTML_Content);
-	fwrite($handle, $HTML_Footer);
-
-	fclose($handle);
-
-	header("location:$newpage");
-
+	<!Doctype html><html><head><title><?php$_POST['pagename']?></title>
+<?php	
+	header("Content-type: text/css");
+	$bgcolor = "$_POST['bgcolor']";
+	$color = "$_POST['fontcolor']";
+	//$dkgreen = '#008400';
 ?>
+	body {
+		background:<?=$bgcolor?>;
+		color:<?=$color?>;
+	}		
+	<!-->	<style type="text/css">
+			body {
+				background-color = "'<?php$_POST['bgcolor']?>'";
+				color = <?php$_POST['fontcolor']?>;
+			}
+		</style> //-->
+
+	</head><body><h1><?php$_POST['content']?><h1><br /><hr /> 
+	</body></html> 
