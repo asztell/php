@@ -1,6 +1,5 @@
 <?php
 session_start();
-	$_SESSION['counter'] = 0;
 	$_SESSION['counter'] = ( !$_SESSION['counter'] ) ? 0 : $_SESSION['counter'];
 	if( $_POST['guess'] ) {
 		$_SESSION['counter']++;
@@ -13,17 +12,17 @@ session_start();
 				$error_msg1 = "you inputed kaka";
 		} else {
 			if ($_POST['guess'] > $_SESSION['number']) {
-				$hi_lo = " is too high";
+				$hi_lo = " is too high :(";
 				echo "counter ". $_SESSION['counter']. "<br/>";
 				echo "number ". $_SESSION['number'];
 			} else if($_POST['guess'] < $_SESSION['number']) {
-				$hi_lo = " is too low";
+				$hi_lo = " is too low :(";
 				echo "counter ". $_SESSION['counter']. "<br/>";
 				echo "number ". $_SESSION['number'];				
 			} else {
-				$hi_lo = "is corect!";
-				$displayCounter = "It took you ". $_SESSION['counter']. "guesses!";
-				//session_destroy();
+				$hi_lo = " is corect :) !";
+				$displayCounter = "It took you only ". $_SESSION['counter']. " guesses!";
+				session_destroy();
 			}
 		}
 	}
@@ -35,15 +34,15 @@ session_start();
 	<head><title></title>
 	</head>
 	
-	<body>
-		<h5>I'm thinking of a number between 1 and 100</h5>
-		<h5>Can you guess what it is?</h5>
-		<h5><?php echo $_POST['guess']. $hi_lo; ?></h5>
+	<body align="center">
+		<h2>I'm thinking of a number between 1 and 100</h2>
+		<h2>Can you guess what it is?</h2>
+		<h2><?php echo $_POST['guess']. $hi_lo; ?></h2>
 		<form method="post" action="numberGuessingGame.php">
 			<input type="text" name="guess"/>
 			<input type="submit" name="submit"/>
 		</form>
-	
+		<h2><?php echo $displayCounter; ?></h2>	
 	</body>
 
 </html>
