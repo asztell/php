@@ -1,8 +1,24 @@
+<!--<?php 
+session_start();
+?>
+<?php
+	$min = 1;
+	$max = 100;
+	$_SESSION['number'] = rand( $min, $max );
+	$_SESSION['guess'] = 0; 
+//	echo "<h1>You rolled ". $_SESSION['number']. "!</h1>";
+	$_SESSION['counter'] = 0;
+	$_SESSION['counter'] = ( !$_SESSION['counter'] ) ? 0 : $_SESSION['counter'];
+	if( $_POST['submit'] ) {
+		$_SESSION['counter']++;
+	}
+?>-->
+
 <?php
 session_start();
 	$_SESSION['counter'] = 0;
 	$_SESSION['counter'] = ( !$_SESSION['counter'] ) ? 0 : $_SESSION['counter'];
-	if( $_POST['guess'] ) {
+	if( $_POST['submit'] ) {
 		$_SESSION['counter']++;
 	}
 	if (!$_SESSION['number']) {
@@ -10,18 +26,20 @@ session_start();
 	}
 	if ($_POST['guess']) {
 		if (!is_numeric($_POST['guess'])) {
-			$error_msg1 = "you inputed kaka";
+				$error_msg1 = "you inputed kaka";
 		} else {
 			if ($_POST['guess'] > $_SESSION['number']) {
 				$hi_lo = "is too high";
-				echo $_SESSION['counter'];
+				echo "counter ". $_SESSION['counter']. "<br/>";
+				echo "number ". $_SESSION['number'];
 			} else if($_POST['guess'] < $_SESSION['number']) {
 				$hi_lo = "is too low";
-				echo $_SESSION['counter'];				
+				echo "counter ". $_SESSION['counter']. "<br/>";
+				echo "number ". $_SESSION['number'];				
 			} else {
 				$hi_lo = "is corect!";
 				$displayCounter = "It took you ". $_SESSION['counter']. "guesses!";
-				session_destroy();
+				//session_destroy();
 			}
 		}
 	}
@@ -39,7 +57,7 @@ session_start();
 		<h5><?php echo $guess. $hi_lo; ?></h5>
 		<form method="post" action="numberGuessingGame.php">
 			<input type="text" name="guess"/>
-			<input type="submit"/>
+			<input type="submit" name="submit"/>
 		</form>
 	
 	</body>
