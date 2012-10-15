@@ -1,19 +1,3 @@
-<!--<?php 
-session_start();
-?>
-<?php
-	$min = 1;
-	$max = 100;
-	$_SESSION['number'] = rand( $min, $max );
-	$_SESSION['guess'] = 0; 
-//	echo "<h1>You rolled ". $_SESSION['number']. "!</h1>";
-	$_SESSION['counter'] = 0;
-	$_SESSION['counter'] = ( !$_SESSION['counter'] ) ? 0 : $_SESSION['counter'];
-	if( $_POST['submit'] ) {
-		$_SESSION['counter']++;
-	}
-?>-->
-
 <?php
 session_start();
 	$_SESSION['counter'] = 0;
