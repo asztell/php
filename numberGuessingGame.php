@@ -1,5 +1,6 @@
 <?php
 session_start();
+extract($_REQUEST);
 	$_SESSION['counter'] = ( !$_SESSION['counter'] ) ? 0 : $_SESSION['counter'];
 	if( $_POST['guess'] ) {
 		$_SESSION['counter']++;
@@ -13,12 +14,12 @@ session_start();
 		} else {
 			if ($_POST['guess'] > $_SESSION['number']) {
 				$hi_lo = " is too high :(";
-				echo "counter ". $_SESSION['counter']. "<br/>";
-				echo "number ". $_SESSION['number'];
+				//echo "counter ". $_SESSION['counter']. "<br/>";
+				//echo "number ". $_SESSION['number'];
 			} else if($_POST['guess'] < $_SESSION['number']) {
 				$hi_lo = " is too low :(";
-				echo "counter ". $_SESSION['counter']. "<br/>";
-				echo "number ". $_SESSION['number'];				
+				//echo "counter ". $_SESSION['counter']. "<br/>";
+				//echo "number ". $_SESSION['number'];				
 			} else {
 				$hi_lo = " is corect :) !";
 				$displayCounter = "It took you only ". $_SESSION['counter']. " guesses!";
