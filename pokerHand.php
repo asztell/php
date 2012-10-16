@@ -21,9 +21,9 @@
 		<form method="post" action="pokerHand.php">
 <?php
 	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card1.".gif' width='50' height='70' alt='card1'/>";
-	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card2."' width='50' height='70' alt='card2'/>";
-	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card3."' width='50' height='70' alt='card3'/>";
-	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card4."' width='50' height='70' alt='card4'/>";
+	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card2.".gif' width='50' height='70' alt='card2'/>";
+	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card3.".gif' width='50' height='70' alt='card3'/>";
+	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card4.".gif' width='50' height='70' alt='card4'/>";
 	echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card5.".gif' width='50' height='70' alt='card5'/>";
 ?>
 		</form>
