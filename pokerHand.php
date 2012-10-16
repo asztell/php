@@ -24,17 +24,11 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		input[type=submit] {
-			height: 12px;
-			width: 30px;
-			font-size: 8px;
-			padding-top: 0px;
-		}
 	</style>
 	<body>
 		<div id="content">
+			<h5>Poker Hand</h5>
 			<?php
-				echo "<h5>Poker Hand</h5>";
 				for ( $i = 0; $i < 5; $i++ ) {
 					echo "<img src = 'http://ciswebs.smc.edu/cs85/geddes_james/labs/lab04/cards/".$card_deck[$i].".gif' width='30' height='45' alt='card1'/>";
 				}
