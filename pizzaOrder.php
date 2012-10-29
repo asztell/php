@@ -5,6 +5,19 @@
 						array(6.25, 7.60, 10.75, 12.50),
 						array(8.00, 12.00, 14.00, 15.50)
 					);
+
+    $pizzaMenu = [
+                    [3.5, 6.25, 8],
+                    [4.35, 7.6, 12],
+                    [7.25, 10.75, 14],
+                    [8, 12.5, 15.5]
+                 ];
+
+    //Examples:
+    //medium vegetarian price: $pizzaMenu[1][1];
+    //large hawaiian price: $pizzaMenu[3][2];
+    //small pepperoni price: $pizzaMenu[2][0];
+     
 ?>
 <!DOCTYPE html>
 <html>
