@@ -5,19 +5,6 @@
 						array(6.25, 7.60, 10.75, 12.50),
 						array(8.00, 12.00, 14.00, 15.50)
 					);
-
-    $pizzaMenu = [
-                    [3.5, 6.25, 8],
-                    [4.35, 7.6, 12],
-                    [7.25, 10.75, 14],
-                    [8, 12.5, 15.5]
-                 ];
-
-    //Examples:
-    //medium vegetarian price: $pizzaMenu[1][1];
-    //large hawaiian price: $pizzaMenu[3][2];
-    //small pepperoni price: $pizzaMenu[2][0];
-     
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,36 +15,44 @@
 	<body>
 		<h3>MENU</h3>
 		<table width="200" cellpadding="1" cellspacing="1" border="1">
-			<tr>
-				<td>
-					<h5><?php 
-							foreach ( $pizzaPrices as $listElement ) {
-								for ( i = 0; i <= 4; i++) {
-									echo $listElement[i][0]."<br/>"; 
-								}
-							}
-						?>
-					</h5>
-				</td>
-				<td>
-					<h5><?php
-							//foreach ($toppings as $listElement) {
-								//echo $listElement."<br/>"; 
-//							}
-						?>
-					</h5>
-				</td>
-				<td>
-					<h5>col3</h5>
-				</td>
-				<td>
-					<h5>col4</h5>
-				</td>
-				<td>
-					<h5>col5</h5>
-				</td>
-			</tr>
-		</table>
+			<thead>
+				<tr>
+					<td></td>
+						<th>Small</th>
+						<th>Medium</th>
+						<th>Large</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+				foreach ($pizzaPrices as $row) {
+					echo "<tr>";
+					foreach ($row as $pizzaType) {
+						echo "<td>$pizzaType</td>";
+					}
+					echo "</tr>";
+				}
+			?>
+		</table><br/>
+		<form action="pizzaOrder.php" method="post">
+		<h5>place your order: </h5>
+		Topping: 
+							<select>
+								<?php
+									for ( $i = 0; $i <= 3; $i++) {
+										echo '<option value="'.$pizzaPrices[0][$i].'">'.$pizzaPrices[0][$i].'</option>';
+									}
+								?>
+							</select>
+
+
+
+		</form>
+
 	</body>
 
 </html>
+
+
+
+
