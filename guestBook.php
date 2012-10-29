@@ -1,8 +1,10 @@
 <?php
-
-
-$fp = fopen('http://ciswebs.smc.edu/cs85/asztalos_arpad_attil/Data/guest.txt', 'r');
-
+	$filename = "guestBook.txt";
+	echo "<h6>print file: ";
+	print $list = file($filename);
+//	print $list;
+	echo "</h6>";
+	
 ?>
 
 <!DOCTYPE html>
