@@ -36,7 +36,7 @@
 		<form action="pizzaOrder.php" method="post">
 		<h5>place your order: </h5>
 		Topping: 
-							<select>
+							<select name="toppingSelected">
 								<?php
 									for ( $i = 1; $i <= 4; $i++) {
 										echo '<option value="'.$pizzaPrices[$i][0].'">'.$pizzaPrices[$i][0].'</option>';
@@ -45,14 +45,19 @@
 							</select>
 
 		Size: 
-							<select>
+							<select name="sizeSelected">
 								<?php
 									for ( $i = 1; $i <= 3; $i++) {
 										echo '<option value="'.$pizzaPrices[0][$i].'">'.$pizzaPrices[0][$i].'</option>';
 									}
 								?>
-							</select>
-
+							</select><br/><br/>
+			<input type="submit" value="submit order" name="submitOrder"/>
+			<?php
+				if ($_POST['submitOrder']) {
+					
+				} 
+			?>
 
 		</form>
 
