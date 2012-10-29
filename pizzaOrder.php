@@ -1,9 +1,10 @@
 <?php
 	$pizzaPrices = array( 
-						array("Plain", "Vegetarian", "Pepperoni", "Hawaiian"),
-						array(3.50, 4.35, 7.25, 8.00),
-						array(6.25, 7.60, 10.75, 12.50),
-						array(8.00, 12.00, 14.00, 15.50)
+						array("", "small", "medium", "large"),
+						array("Plain", 3.50, 6.25, 8.00),
+						array("Vegetarian", 4.35, 7.60, 12.00),
+						array("Pepperoni", 7.25, 10.75, 14.00),
+						array("Hawaiian", 8.00, 12.50, 15.50)
 					);
 ?>
 <!DOCTYPE html>
@@ -15,14 +16,12 @@
 	<body>
 		<h3>MENU</h3>
 		<table width="200" cellpadding="1" cellspacing="1" border="1">
-			<thead>
+<!--			<thead>
 				<tr>
 					<td></td>
-						<th>Small</th>
-						<th>Medium</th>
-						<th>Large</th>
+						
 				</tr>
-			</thead>
+			</thead>-->
 			<tbody>
 			<?php
 				foreach ($pizzaPrices as $row) {
@@ -39,12 +38,20 @@
 		Topping: 
 							<select>
 								<?php
-									for ( $i = 0; $i <= 3; $i++) {
-										echo '<option value="'.$pizzaPrices[0][$i].'">'.$pizzaPrices[0][$i].'</option>';
+									for ( $i = 1; $i <= 4; $i++) {
+										echo '<option value="'.$pizzaPrices[$i][0].'">'.$pizzaPrices[$i][0].'</option>';
 									}
 								?>
 							</select>
 
+		Size: 
+							<select>
+								<?php
+									for ( $i = 1; $i <= 3; $i++) {
+										echo '<option value="'.$pizzaPrices[0][$i].'">'.$pizzaPrices[0][$i].'</option>';
+									}
+								?>
+							</select>
 
 
 		</form>
