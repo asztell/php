@@ -1,10 +1,10 @@
 <?php
 	$pizzaPrices = array( 
 						array("", "small", "medium", "large"),
-						array("Plain", 3.50, 6.25, 8.00),
-						array("Vegetarian", 4.35, 7.60, 12.00),
-						array("Pepperoni", 7.25, 10.75, 14.00),
-						array("Hawaiian", 8.00, 12.50, 15.50)
+						array("plain", 3.50, 6.25, 8.00),
+						array("vegetarian", 4.35, 7.60, 12.00),
+						array("pepperoni", 7.25, 10.75, 14.00),
+						array("hawaiian", 8.00, 12.50, 15.50)
 					);
 ?>
 <!DOCTYPE html>
@@ -14,14 +14,9 @@
 		</style>
 	</head>
 	<body>
+<?php if (!$_POST['toppingSelected']) { ?>
 		<h3>MENU</h3>
 		<table width="200" cellpadding="1" cellspacing="1" border="1">
-<!--			<thead>
-				<tr>
-					<td></td>
-						
-				</tr>
-			</thead>-->
 			<tbody>
 			<?php
 				foreach ($pizzaPrices as $row) {
@@ -53,16 +48,19 @@
 								?>
 							</select><br/><br/>
 			<input type="submit" value="submit order" name="submitOrder"/>
-			<?php
-				if ($_POST['submitOrder']) {
-					
-				} 
-			?>
-
 		</form>
-
+<?php } else ?>
+		<table>
+			
+		</table>
+<!--			$topping = $_POST['toppingSelected'];
+			$size = $_POST['sizeSelected'];
+			echo "<h6>Your order:</h6>";
+			echo "<br/>".$size." ".$topping;
+		} 
+	}
+?>-->
 	</body>
-
 </html>
 
 
