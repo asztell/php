@@ -1,10 +1,11 @@
 <?php
 	$filename = "guestBook.txt";
-	echo "<h6>print file: ";
-	print $list = file($filename);
-//	print $list;
+	echo "<h6>print file: <br/>";
+	$list = file($filename);
+	foreach ( $list as $row ) {
+		echo $row."<br/>";
+	}
 	echo "</h6>";
-	
 ?>
 
 <!DOCTYPE html>
