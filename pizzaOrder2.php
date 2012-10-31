@@ -1,4 +1,5 @@
 <?php
+    //array which holds pizza information
 	$pizzaPrices = array( 
 						array("", "small", "medium", "large"),
 						array("plain", 3.50, 6.25, 8.00),
