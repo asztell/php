@@ -49,6 +49,7 @@
 							</select><br/><br/>
 			<input type="submit" value="submit order" name="submitOrder"/>
 		</form>
+	<?php	echo $pizzaPrices[$_POST['pizzaType']][$_POST['pizzaSize']]; ?>
 <?php } else ?>
 		<table>
 			
