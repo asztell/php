@@ -3,13 +3,13 @@
 	$s = new SuperHTML("");
 	$s->buildTop();
 	
-	if (!$value) {
+	if (!$_POST['Your_name']) {
 
-		$s->addText("<form> \n");
+		$s->addText("<form method=\"post\" action=\"\"> \n");
 		$myArray = array( 
-		  array($s->gTag("b","Your name: "), $s->gTextbox("Your name")), 
-		  array("Your email: ", $s->gTextbox("Your email")), 
-		  array("Your hobbies: ", $s->gTextbox("Your hobbies")),
+		  array($s->gTag("b","Your name: "), $s->gTextbox("Your_name")), 
+		  array("Your email: ", $s->gTextbox("Your_email")), 
+		  array("Your hobbies: ", $s->gTextbox("Your_hobbies")),
 		); 
 
 		$s->buildTable($myArray); 
