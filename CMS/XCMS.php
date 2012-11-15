@@ -13,7 +13,7 @@
 		print "<span class= \"rightPanel\"> \n";
 		include( $xml->right );
 		print "</span> \n";
-	
+
 		print "<span class = \"menuPanel\"> \n";
 		include ( $xml->menu );
 		print "</span> \n";
@@ -23,9 +23,4 @@
 		print "</span> \n";
 	}
 ?>
-
-
-
-
-
 
