@@ -1,0 +1,46 @@
+<style type = "text/css">
+
+body {
+  background-image: url("binaryBG.gif");
+}
+
+h1 {
+  color: #DFFFFF;
+  font-family: "Comic Sans MS";
+  text-align: center;
+}
+
+span.menuPanel {
+  position: absolute;
+  left: 0.2%;
+  width: 15.9%;
+  min-height: 200px;
+  height: 60%;
+  background-color: #CFFFFF;
+}
+
+span.topOfPage {
+  background-color: #CFFFFF;
+  width: 130px;
+  height: 100px;
+}
+
+span.item {
+  position: absolute;
+  left: 16.2%;
+  width: 67.6%;
+  min-height: 200px;
+  height: 60%;
+  background-color: #CFFFFF;
+}
+
+span.rightPanel {
+  position: absolute;
+  right: 0.2%;
+  width: 15.9%;
+  min-height: 200px;
+  height: 60%;
+  background-color: #CFFFFF;
+}
+
+</style>
