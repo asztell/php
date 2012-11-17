@@ -1,0 +1,10 @@
+CREATE DATABASE TEST3;
+USE TEST3
+CREATE TABLE CARS ( OWNER VARCHAR(20), 
+COLOR VARCHAR(20), YEAR INT(4), MAKE VARCHAR(15),
+MODEL VARCHAR(15));
+INSERT INTO CARS ( OWNER, COLOR, YEAR, MAKE, MODEL )
+VALUES ( 'Jeannie', 'absolute red', 2007, 'Toyota', 'Solara' )
+VALUES ( 'Bill', 'burnt orange', 1966, 'Chevrolet', 'Corvette' ) 
+VALUES ( 'Ken', 'pearl essence', 1966 , 'Jaguar', 'XKE' );
+SELECT * FROM CARS;

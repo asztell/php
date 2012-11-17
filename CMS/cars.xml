@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Car>
+	<car1>
+		<owner>Jeannie</owner>
+		<color>absolute red</color>
+		<year>2007</year>
+		<make>Toyota</make>
+		<model>Solara</model>
+	</car1>
+
+	<car2>
+		<owner>Bill</owner>
+		<color>burnt orange</color>
+		<year>1966</year>
+		<make>Chevrolet</make>
+		<model>Corvette</model>
+	</car2>
+
+	<car3>
+		<owner>Ken</owner>
+		<color>pearl essence</color>
+		<year>1966</year>
+		<make>Jaguar</make>
+		<model>XKE</model>
+	</car3>
+</Car>

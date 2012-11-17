@@ -12,24 +12,24 @@
 
 	<body>
 		<h1>Ken's Main Page </h1>
-		<p>File: <strong>kenMain.html</strong></p>
-		<p>Purpose: to illustrate how the <strong>XCMS.php</strong> script can display a page specified by the <strong>content</strong> element in an XML document. </p>
-		<p>&nbsp;</p>
-		<p>You should run the <strong>XCMS.php</strong> script as follows:</p>
+		<p align="left">File: <strong>kenMain.html</strong></p>
+		<p align="left">Purpose: to illustrate how the <strong>XCMS.php</strong> script can display a page specified by the <strong>content</strong> element in an XML document. </p>
+		<p align="left">&nbsp;</p>
+		<p align="left">You should run the <strong>XCMS.php</strong> script as follows:</p>
 		<blockquote>
 		   <p><span class="style1">XCMS.php?theXML=kenMain.xml</span></p>
 		</blockquote>
-		<p>&nbsp;</p>
-		<p>In the <strong>kenMain.xml</strong> document, the <strong>content</strong> element is </p>
+		<p align="left">&nbsp;</p>
+		<p align="left">In the <strong>kenMain.xml</strong> document, the <strong>content</strong> element is </p>
 		<blockquote>
-		   <p> <span class="style1">&lt;content&gt;kenMain.html&lt;/content&gt;</span></p>
+		   <p align="left"> <span class="style1">&lt;content&gt;kenMain.html&lt;/content&gt;</span></p>
 		</blockquote>
 		<p>Thus, the<strong> XCMS.php</strong> script  displays the <strong>kenMain.html</strong> file.</p>
 		<p>&nbsp;</p>
 		<h3>Style</h3>
 		<p> The style XCMS will use for this page is whatever is defined for the  <strong>item</strong> class in the stylesheet. </p>
 		<p>The CSS stylesheet to be used is specified by the <strong>css</strong> element in the <strong>kenMain.xml</strong> file. </p>
-		<p>In the <strong>kenMain.xml</strong> document, the<strong> css</strong><strong> </strong>element is </p>
+		<p align="left">In the <strong>kenMain.xml</strong> document, the<strong> css</strong><strong> </strong>element is </p>
 		<blockquote>
 		   <p> <span class="style1">&lt;css&gt;menuLeft.css&lt;/css&gt;</span></p>
 		</blockquote>

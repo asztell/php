@@ -2,7 +2,7 @@
 <cpage>
   <title>Andy's main Page</title>
   <css>menuLeft.css</css>
-  <top>top.html</top>
+  <top>topOfPage.html</top>
   <menu>menuX.html</menu>
   <content>http://www.cs.iupui.edu/~aharris/default</content>
 </cpage>
