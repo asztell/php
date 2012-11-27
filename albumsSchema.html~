@@ -1,0 +1,13 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>albumsSchema.html</title>
+	</head>
+	
+	<body>
+		<h4>asztalos-arpad_attil_artists(firstName, lastName)</h4>
+		<h4>asztalos-arpad_attil_albums(title, genre, price)</h4>
+	
+	</body>
+	
+</html>

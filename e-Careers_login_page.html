@@ -1,0 +1,235 @@
+
+<!-- saved from url=(0057)http://central.mindleaders.com/lms/login.jsp?siteid=eca01 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MindLeaders</title>
+
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+
+<script src="./e-Careers_login_page_files/site.js"></script><script language="Javascript" src="./e-Careers_login_page_files/resource_strings.js"></script><script language="Javascript" src="./e-Careers_login_page_files/special_cases.js"></script>
+<script src="./e-Careers_login_page_files/mlclientpage.js"></script>
+<script>var thisPage = new MlPage();</script>
+<script src="./e-Careers_login_page_files/LmsPopup.js"></script>
+<script>
+var lmsPopup = new LmsPopup();
+
+function createAccount()
+{
+
+	var modalWidth = 720;
+	var modalHeight = 550;
+
+	var returnValue = window.showModalDialog("/lms/tile.do?def=selfRegCreateAccount&title=createAccount&displayed=createAccount&type=user&keys=-1&action=add&siteid=eca01", "",
+		"dialogWidth:"+modalWidth+"px; dialogHeight:" + modalHeight +
+		"px; help: no; scroll:no; resizable:yes; center:yes; status: no; unadorned: yes; title: no");
+
+}
+
+function forgotPassword()
+{
+	var url = "/lms/tile.do?def=forgotPassword&siteid=eca01";
+	window.open(url,"","width=600, height=350")
+}
+
+function showLoginAccessible()
+{
+	document.location.href="loginacc.jsp";
+	return false;
+}
+</script>
+<script src="./e-Careers_login_page_files/login.jsp"></script>
+<link id="lmscss" rel="stylesheet" href="./e-Careers_login_page_files/lms.css" type="text/css">
+
+<style type="text/css">
+<!--
+	.loginBody { }
+	.closer { display: none }
+	.containingDiv { }
+	.loginTitle { font-weight: bold; margin-top: 10px	}
+	.formDiv { }
+	.heading { display: none }
+	.inputTable { border: thin solid black }
+	.helperLinks { }
+	.selfReg { border: thin solid black; margin-top:3px; margin-bottom:20px; font-family: verdana; font-size: 10pt; }
+	.selfRegText { margin-left:10px; margin-top:5px; margin-bottom:5px }
+	.offlineSelfReg { display: none }
+	
+	.logo
+	{
+	display: none;
+	}
+	.formDiv p#loginInstructions
+	{
+	display: none;
+	}
+-->
+</style>
+
+</head>
+<body class="contentBody loginBody">
+<div class="closer"><a href="javascript:window.close()">Close</a></div>
+<div class="containingDiv">
+<div class="loginTitle">Log In</div>
+
+	<div class="formDiv">
+		<div class="heading"></div>
+		<div class="logo">&nbsp;</div>
+		<p id="loginInstructions"></p>
+    <form name="form1" action="http://central.mindleaders.com/lms/login.jsp" method="post" target="Lms">
+    <table class="inputTable">
+    <tbody><tr><td class="formLabelCell">User ID:</td>
+    <td class="formFieldCell"><input type="text" name="userid" value="" style="width:80%"></td></tr>
+    <tr><td class="formLabelCell">Password:</td>
+    <td class="formFieldCell"><input maxlength="255" type="password" name="password" value="" style="width:80%"></td></tr>
+    <tr><td class="formLabelCell">&nbsp;</td>
+    <td class="formFieldCell"><input type="submit" class="modalButton" onclick="doLogin(); return false;" value="Log In" bundle="mlUI" style="width:80%"></td></tr>
+    
+    <tr class="helperLinks">
+    	<td align="right"><a href="javascript:showLoginAccessible();">Text Only</a></td>
+    	<td width="213" align="left">&nbsp;|&nbsp;<a href="javascript:forgotPassword()">Forgot User ID or Password</a></td>
+    </tr>
+
+    <tr><td>&nbsp;</td>
+    <td width="200" align="left">
+
+    </td>
+    </tr>
+    </tbody></table>
+    <input type="hidden" name="siteid" value="eca01">
+    <input type="hidden" name="locale" value="">
+    </form>
+	</div>
+
+	<br>
+	
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+function disableAnnouncements()
+{
+  var yesButton =  "newUsers_disableAnnouncement_yesButton" ;
+  var messageKey = "newUsers_disableAnnouncement_message";
+  if (thisPage.getLmsObject().messageBox("cancel_msgButton|" + yesButton + "(default)",messageKey) == yesButton)
+  {
+      var url = window.location + "&setNewUserTo=false";
+      window.location = url;
+  }
+}
+
+function courseOrientation()
+{
+   alert("Course orientation page");
+}
+
+function getStart()
+{
+   alert("get started page");
+}
+
+function readMore(id)
+{
+   var ele = document.getElementById(id);
+   var span_ele = document.getElementById("span_"+id);
+
+   if (span_ele.innerHTML == "Read More")
+   {
+	ele.className = "NoEllipsis";
+	span_ele.innerHTML = "Close";
+   }
+   else
+   {
+   	ele.className = "YesEllipsis";
+	span_ele.innerHTML = "Read More";
+   }
+}
+
+function toggleContentGroup(groupName) 
+{
+	var contentGroupDiv = document.getElementById(groupName + "Div");
+	var contentGroupImage = document.getElementById(groupName + "Image");
+
+	if (contentGroupDiv.style.display == "block")
+	{
+		contentGroupDiv.style.display = "none";
+		contentGroupImage.className = "expandArrow";
+	}
+	else
+	{
+		contentGroupDiv.style.display = "block";
+		contentGroupImage.className = "collapseArrow";
+	}
+}
+</script>
+<script src="./e-Careers_login_page_files/yahoo-dom-event.js"></script>
+<script src="./e-Careers_login_page_files/stylesheet-min.js"></script>
+<script>
+function announcementresize(e)
+{
+	var stylesheet = YAHOO.util.Dom.get("lmscss");
+	if (!stylesheet) stylesheet = YAHOO.util.Dom.get("ngencss");
+
+	YAHOO.util.StyleSheet(stylesheet).set(".YesEllipsis", {
+		width: (document.body.clientWidth - 60) + "px"
+	});
+	YAHOO.util.StyleSheet(stylesheet).set(".NoEllipsis", {
+		width: (document.body.clientWidth - 60) + "px"
+	});
+	YAHOO.util.StyleSheet(stylesheet).set(".announcementMore", {
+		width: (document.body.clientWidth - 60) + "px"
+	});
+}
+YAHOO.util.Event.addListener(window, "load", announcementresize);
+YAHOO.util.Event.addListener(window, "resize", announcementresize);
+</script>
+
+
+
+
+
+
+</div>
+
+<script>
+  lmsPopup.writeCacheElem();
+</script><span id="MlClientDataCacheElem" style="display:none; behavior:url(&#39;#default#userData&#39;)"></span>
+
+
+
+
+
+</body></html>
