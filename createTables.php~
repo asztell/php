@@ -5,6 +5,7 @@
 	$result = mysqli_query($conn, 'create table asztalos_arpad_attil_artist (firstName varchar(15), lastName varchar(15));');
 	if (!$result) {
 		echo mysqli_error($conn);
+	}
 /*	} else {
 		echo "<pre>";
 		while ($row = $result->fetch_assoc()) {
@@ -15,7 +16,7 @@
 		}
 		echo "</pre>";
 	}*/
-	else 
+	else {
 		echo "database created";
-
+	}
 ?>
