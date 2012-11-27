@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<page>
-	<title>Andy's main Page</title>
-	<css>menuLeft.css</css>
-	<top>topOfPage.html</top>
-	<right>rightPanel.html</right>
-	<menu>menuX.html</menu>
-	<content>http://wally.cs.iupui.edu/wallyindex.html</content>
-</page>
