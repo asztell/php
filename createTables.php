@@ -16,6 +16,6 @@
 		echo "</pre>";
 	}*/
 	else {
-		echo "database created";
+		echo "table created";
 	}
 ?>
