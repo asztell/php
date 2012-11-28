@@ -36,12 +36,105 @@
 	}
 	$result = mysqli_query( $conn, '
 	alter table asztalos_arpad_attil_artist
-	add constraint pk_artist_id primary key (artist_id);
-	' );
+	add constraint pk_artist_id primary key (artist_id)
+	;
+	');
 	if ( !$result ) {
 		echo mysqli_error( $conn );
 	} else {
-		echo "artist_id created<br />";
+		echo "pk_artist_id created<br />";
 	}
 
+
+$searchForm = '
+	<!Doctype html>
+		<html>
+			<head>
+				<title>SEARCH</title>
+			</head>
+			<body>
+
+				<h1>Search</h1>
+				<p>Enter the title of the CD or name of the artist you want to find.</p>
+				<form action="createTables.php" method="POST">
+				   <table border="0">
+					  <tr>
+						 <td align="right">Title:</td>
+						 <td><input type="text" name="title_or_name" maxlength="40" size="40"><br />
+						 </td>
+					  </tr>
+					  <tr>
+						 <td colspan="2">
+							<p align="center"><input type="submit" value="Search"></p>
+						 </td>
+					  </tr>
+				   </table>
+				</form>
+
+			</body>
+
+		</html>';
+		
+$addArtistForm = '
+	<!Doctype html>
+	<html>
+		<head>
+			<title>New Artist</title>
+		</head>
+		<body>
+			<h1>New Artist</h1>
+			<form action="createTable.php" method="POST">
+			   <table border="0">
+				  <tr>
+					 <td align="right">Artists first name:</td>
+					 <td><input type="text" name="first_name" maxlength="30" size="30"><br />
+					 <td align="right">Artists last name:</td>
+					 <td><input type="text" name="last_name" maxlength="30" size="30"><br />
+					 </td>
+				  </tr>
+				  <tr>
+					 <td align="right">Style:</td>
+					 <td><input type="text" name="style" maxlength="30" size="30"><br />
+				  </tr>
+				  <tr>
+					 <td colspan="2">
+						<p align="center"><input type="submit" value="Save"></p>
+					 </td>
+				  </tr>
+			   </table>
+			</form>
+		</body>
+	</html>';
+	
+$addAlbumForm = '
+	<!Doctype html>
+	<html>
+		<head>
+			<title>New Album</title>
+		</head>
+		<body>
+			<h1>New Album</h1>
+			<form action="createTable.php" method="POST">
+			   <table border="0">
+				  <tr>
+					 <td align="right">Album title:</td>
+					 <td><input type="text" name="album_title" maxlength="30" size="30"><br /></td>
+				  </tr>
+				  <tr>
+					 <td align="right">Style:</td>
+					 <td><input type="text" name="style" maxlength="30" size="30"><br /></td>
+				  </tr>
+				  <tr>
+					 <td colspan="2">
+						<p align="center"><input type="submit" value="Save"></p>
+					 </td>
+				  </tr>
+			   </table>
+			</form>
+		</body>
+	</html>';
+	
+
+
 ?>
+
