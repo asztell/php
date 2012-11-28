@@ -1,12 +1,13 @@
-<?php
-	error_reporting(0);
-	include( 'db_connection_info.inc' );
 	/****************************************************************
 	on the server:
 	
 	http://ciswebs.smc.edu/cs85/asztalos_arpad_attil/createTables.php
 	
 	****************************************************************/
+<?php
+	error_reporting(0);
+	include( 'db_connection_info.inc' );
+
 	echo '
 	<!Doctype html>
 	<html>
