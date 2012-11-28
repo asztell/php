@@ -10,7 +10,7 @@
 	if ( !$result ) {
 		echo mysqli_error( $conn );
 	} else {
-		echo "table artist created<br />";
+		//echo "table artist created<br />";
 	}
 	$result = mysqli_query( $conn, '
 	create table if not exists asztalos_arpad_attil_album ( 
@@ -22,7 +22,7 @@
 	if ( !$result ) {
 		echo mysqli_error( $conn );
 	} else {
-		echo "table album created<br />";
+		//echo "table album created<br />";
 	}
 	$result = mysqli_query( $conn, '
 	alter table asztalos_arpad_attil_artist 
@@ -32,7 +32,7 @@
 		if ( !$result ) {
 		echo mysqli_error( $conn );
 	} else {
-		echo "artist_id created<br />";
+		//echo "artist_id created<br />";
 	}
 	$result = mysqli_query( $conn, '
 	alter table asztalos_arpad_attil_artist
@@ -42,7 +42,7 @@
 	if ( !$result ) {
 		echo mysqli_error( $conn );
 	} else {
-		echo "pk_artist_id created<br />";
+		//echo "pk_artist_id created<br />";
 	}
 
 
@@ -86,9 +86,11 @@ $addArtistForm = '
 			<form action="createTable.php" method="POST">
 			   <table border="0">
 				  <tr>
-					 <td align="right">Artists first name:</td>
+					 <td align="right">Artist\'s first name:</td>
 					 <td><input type="text" name="first_name" maxlength="30" size="30"><br />
-					 <td align="right">Artists last name:</td>
+				  </tr>
+				  <tr>
+					 <td align="right">Artist\'s last name:</td>
 					 <td><input type="text" name="last_name" maxlength="30" size="30"><br />
 					 </td>
 				  </tr>
@@ -133,6 +135,9 @@ $addAlbumForm = '
 			</form>
 		</body>
 	</html>';
-	
+echo $searchForm;
+echo $addArtistForm;
+echo $addAlbumForm;
+
 ?>
 
