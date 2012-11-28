@@ -68,6 +68,10 @@
 				{
 					border: 0px;
 				}
+				.r
+				{
+					text-align: right;
+				}
 				.add_artist_button 
 				{
 					float: left;
@@ -179,15 +183,15 @@ $searchForm = '
 				<p>Enter the title of the CD or name of the artist you want to find.</p>
 				<div class="innerForm" id="searchFormID">
 					<form action="createTables.php" method="POST">
-					   <table id="">
+					   <table id="searchTableID">
 						  <tr>
-							 <td align="right">Title:</td>
+							 <td id="r">Title:</td>
 							 <td><input type="text" name="title_or_name" maxlength="40" size="40"><br />
 							 </td>
 						  </tr>
 						  <tr>
 							 <td colspan="2">
-								<p align="center"><input type="submit" value="Search" name="submit_album"></p>
+								<p><input type="submit" value="Search" name="submit_album"></p>
 							 </td>
 						  </tr>
 					   </table>
@@ -202,23 +206,23 @@ $addArtistForm = '
 			<h1>New Artist</h1>
 				<div class="innerForm" id="artistFormID">	
 					<form action="createTable.php" method="POST">
-					   <table>
+					   <table id="artistTableID">
 						  <tr>
-							 <td align="right">Artist\'s first name:</td>
+							 <td id="r">Artist\'s first name:</td>
 							 <td><input type="text" name="first_name" maxlength="30" size="30"><br />
 						  </tr>
 						  <tr>
-							 <td align="right">Artist\'s last name:</td>
+							 <td id="r">Artist\'s last name:</td>
 							 <td><input type="text" name="last_name" maxlength="30" size="30"><br />
 							 </td>
 						  </tr>
 						  <tr>
-							 <td align="right">Style:</td>
+							 <td id="r">Style:</td>
 							 <td><input type="text" name="style" maxlength="30" size="30"><br />
 						  </tr>
 						  <tr>
 							 <td colspan="2">
-								<p align="center"><input type="submit" value="Save" name="submit_artist"></p>
+								<p><input type="submit" value="Save" name="submit_artist"></p>
 							 </td>
 						  </tr>
 					   </table>
@@ -233,18 +237,18 @@ $addAlbumForm = '
 			<h1>New Album</h1>
 				<div class="innerForm" id="albumFormID">
 					<form action="createTable.php" method="POST">
-					   <table>
+					   <table id="albumTableID">
 						  <tr>
-							 <td align="right">Album title:</td>
+							 <td id="r">Album title:</td>
 							 <td><input type="text" name="album_title" maxlength="30" size="30"><br /></td>
 						  </tr>
 						  <tr>
-							 <td align="right">Style:</td>
+							 <td id="r">Style:</td>
 							 <td><input type="text" name="style" maxlength="30" size="30"><br /></td>
 						  </tr>
 						  <tr>
 							 <td colspan="2">
-								<p align="center"><input type="submit" value="Save" name="submit_search"></p>
+								<p><input type="submit" value="Save" name="submit_search"></p>
 							 </td>
 						  </tr>
 					   </table>
