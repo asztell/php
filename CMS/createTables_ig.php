@@ -237,13 +237,13 @@ EOT;
     </div>
 </div>
 EOT;
+
 	include( 'db_connection_info.inc' );
 
 	$conn = mysqli_connect( 'localhost', $cs85Username, $cs85Password, 'albums' );
 
     //page action
     $pageAction = $_GET['pageAction'];
-
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
@@ -261,9 +261,7 @@ EOT;
         $formToDisplay = $searchForm;
     }
 		
-
     //actual logic to process submitted forms
-
     if ($pageAction == "create_tables" && $_POST['submitted']) {
         array_push($output, "Processing creating tables");
 
