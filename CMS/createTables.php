@@ -23,16 +23,20 @@
 				body
 				{
 					font-size: 100%;
-					background-color: #909090;
+					background-color: #707070;
 				}
 				input
 				{
-					color: #700000;
-					background-color: #999999;
+					color: #800000;
+					background-color: #808080;
+				}
+				#textInputID
+				{
+					background-color: #FFFFFF;
 				}
 				.headerContainer
 				{
-					background-color: #707070;
+					background-color: #999999;
 					margin: 30px auto;
 					text-align: center;
 					width: 500px;
@@ -40,7 +44,7 @@
 				}
 				.form
 				{
-					background-color: #707070;
+					background-color: #999999;
 					margin: 50px auto;
 					text-align: center;
 					width: 500px;
@@ -178,28 +182,28 @@
 	}
 
 $searchForm = '
-			<div class="form">
+		<div class="form">
 			<h1>Search</h1>
-				<p>Enter the title of the CD or name of the artist you want to find.</p>
-				<div class="innerForm" id="searchFormID">
-					<form action="createTables.php" method="POST">
-					   <table id="searchTableID">
-						  <tr>
-							 <td id="r">Title:</td>
-							 <td><input type="text" name="title_or_name" maxlength="40" size="40"><br />
-							 </td>
-						  </tr>
-						  <tr>
-							 <td colspan="2">
-								<p><input type="submit" value="Search" name="submit_album"></p>
-							 </td>
-						  </tr>
-					   </table>
-					</form>
-				</div>
+			<p>Enter the title of the CD or name of the artist you want to find.</p>
+			<div class="innerForm" id="searchFormID">
+				<form action="createTables.php" method="POST">
+				   <table id="searchTableID">
+					  <tr>
+						 <td id="r">Title:</td>
+						 <td><input id="textInputID" type="text" name="title_or_name" maxlength="40" size="40"><br />
+						 </td>
+					  </tr>
+					  <tr>
+						 <td colspan="2">
+							<p><input type="submit" value="Search" name="submit_album"></p>
+						 </td>
+					  </tr>
+				   </table>
+				</form>
 			</div>
-		</body>
-	</html>';
+		</div>
+	</body>
+</html>';
 		
 $addArtistForm = '
 			<div class="form">
@@ -209,16 +213,16 @@ $addArtistForm = '
 					   <table id="artistTableID">
 						  <tr>
 							 <td id="r">Artist\'s first name:</td>
-							 <td><input type="text" name="first_name" maxlength="30" size="30"><br />
+							 <td><input id="textInputID" type="text" name="first_name" maxlength="30" size="30"><br />
 						  </tr>
 						  <tr>
 							 <td id="r">Artist\'s last name:</td>
-							 <td><input type="text" name="last_name" maxlength="30" size="30"><br />
+							 <td><input id="textInputID" type="text" name="last_name" maxlength="30" size="30"><br />
 							 </td>
 						  </tr>
 						  <tr>
 							 <td id="r">Style:</td>
-							 <td><input type="text" name="style" maxlength="30" size="30"><br />
+							 <td><input id="textInputID" type="text" name="style" maxlength="30" size="30"><br />
 						  </tr>
 						  <tr>
 							 <td colspan="2">
@@ -240,11 +244,11 @@ $addAlbumForm = '
 					   <table id="albumTableID">
 						  <tr>
 							 <td id="r">Album title:</td>
-							 <td><input type="text" name="album_title" maxlength="30" size="30"><br /></td>
+							 <td><input id="textInputID" type="text" name="album_title" maxlength="30" size="30"><br /></td>
 						  </tr>
 						  <tr>
 							 <td id="r">Style:</td>
-							 <td><input type="text" name="style" maxlength="30" size="30"><br /></td>
+							 <td><input id="textInputID" type="text" name="style" maxlength="30" size="30"><br /></td>
 						  </tr>
 						  <tr>
 							 <td colspan="2">
