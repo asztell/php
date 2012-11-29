@@ -6,8 +6,8 @@
 			.logo
 			{
 				border: 0px;
-                width: 500px;
-                margin: auto;
+                width: 520px;
+                margin: 30px auto 50px auto;
 			}
             .logo h1
             {
@@ -18,7 +18,9 @@
             body
             {
                 font-size: 100%;
-                background-color: #909090;
+                color: #eeeeee;
+                font-family: Times New Roman;
+                background-color: #858585;
             }
 
             input
@@ -27,23 +29,27 @@
                 background-color: #999999;
             }
 
-            .header_container
+            .nav
             {
-                background-color: #707070;
-                margin: 30px auto;
+                background-color: #909090;
+                margin: 50px auto 0px;
                 text-align: center;
-                width: 500px;
+                width: 470px;
                 border: 0px solid black;
                 height: 130px;
             }
 
             .form
             {
-                background-color: #707070;
+                background-color: #909090;
                 margin: 50px auto;
                 text-align: center;
                 width: 500px;
-                border: 0px solid black;
+                border: 1px solid #909090;
+            }
+            .inner_form
+            {
+            	margin: auto;
             }
 
             .nav 
@@ -51,11 +57,8 @@
 			    list-style: none;
 			}
 
-/*			.nav li 
-			{
-			    float: left;
-			}*/
-
+/*			.nav #button_specs li a*/
+			#button_specs input,
 			.nav li a 
 			{
 				font-family: Arial;
@@ -84,26 +87,27 @@
             #artist_form_ID
             {
                 text-align: center;
-                margin: 1px auto;
+                margin: 15px auto;
                 width: 480px;
             }
 
             #album_form_ID
             {
                 text-align: center;
-                margin: 1px auto;
+                margin: 15px auto;
                 width: 440px;
             }
 
             #search_form_ID
             {
                 text-align: center;
-                margin: 1px auto;
+                margin: 15px auto;
                 width: 475px;
             }
 			#text_box_ID
 			{
 				background-color: #FFFFFF;
+				width: 300px;
 			}
             table
             {
@@ -113,19 +117,19 @@
             .add_artist_button 
             {
                 float: left;
-                margin: 20px;
+                margin: 35px 20px;
             }
 
             .add_album_button
             {
-                float: right;
-                margin: 20px;
+                float: left;
+                margin: 35px 20px;
             }
 
             .search_button 
             {
-                float: center;
-                margin: 20px;
+                float: left;
+                margin: 35px 20px;
             }
 
             .mysql_message
@@ -159,17 +163,17 @@ EOT;
 <div class="form">
     <h1>Search</h1>
     <p>Enter the title of the CD or name of the artist you want to find.</p>
-    <div class="inner_form" id="search_form_ID">
+    <div class="inner_form">
         <form action="createTables_ig.php?pageAction=search" method="POST">
             <input type="hidden" name="submitted" value="true">
-            <table id="">
+            <table id="search_form_ID">
                 <tr>
-                    <td align="right">Title:</td>
+                    <td>Title:</td>
                     <td><input id="text_box_ID" type="text" name="title_or_name" maxlength="40" size="40"><br />
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="button_specs">
                     <p align="center"><input type="submit" value="Search" name="submit_album"></p>
                     </td>
                 </tr>
@@ -182,10 +186,10 @@ EOT;
     $addArtistForm = <<<EOT
 <div class="form">
     <h1>New Artist</h1>
-    <div class="inner_form" id="artist_form_ID">	
+    <div class="inner_form">	
         <form action="createTables_ig.php?pageAction=add_artist" method="POST">
             <input type="hidden" name="submitted" value="true">
-            <table>
+            <table id="artist_form_ID">
                 <tr>
                     <td align="right">Artist's first name:</td>
                     <td><input id="text_box_ID" type="text" name="first_name" maxlength="30" size="30"><br />
@@ -200,7 +204,7 @@ EOT;
                     <td><input id="text_box_ID" type="text" name="style" maxlength="30" size="30"><br />
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="button_specs">
                         <p align="center">
                             <input type="submit" value="Save" name="submit_artist">
                         </p>
@@ -215,10 +219,10 @@ EOT;
     $addAlbumForm = <<<EOT
 <div class="form">
     <h1>New Album</h1>
-    <div class="inner_form" id="album_form_ID">
+    <div class="inner_form">
         <form action="createTables_ig.php?pageAction=add_album" method="POST">
             <input type="hidden" name="submitted" value="true">
-            <table>
+            <table id="album_form_ID">
                 <tr>
                     <td align="right">Album title:</td>
                     <td><input id="text_box_ID" type="text" name="album_title" maxlength="30" size="30"><br /></td>
@@ -228,7 +232,7 @@ EOT;
                     <td><input id="text_box_ID" type="text" name="style" maxlength="30" size="30"><br /></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="button_specs">
                         <p align="center"><input type="submit" value="Save" name="submit_search"></p>
                     </td>
                 </tr>
@@ -330,10 +334,10 @@ EOT;
         </div>
         <div class="header_container">
 		    <ul class="nav">
-	<!--        <li class="add_DB_button" ><a href="createTables_ig.php?pageAction=create_tables">Create DB tables</a></li>-->
-		        <li class="add_artist_button"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
-		        <li class="add_album_button"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
-		        <li class="search_button"><a href="createTables_ig.php?pageAction=search">Search</a></li>
+	<!--        <li class="add_DB_button" id="button_specs"><a href="createTables_ig.php?pageAction=create_tables">Create DB tables</a></li>-->
+		        <li class="add_artist_button" id="button_specs"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
+		        <li class="search_button" id="button_specs"><a href="createTables_ig.php?pageAction=search">Search</a></li>
+		        <li class="add_album_button" id="button_specs"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
 		    </ul>
         </div>
         <div class="form_container">
