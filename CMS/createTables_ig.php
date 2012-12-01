@@ -3,25 +3,39 @@
     <head>
         <title>album</title>
         <style type="text/css">
-			.logo
+
+			a:active,
+			a:focus,
+			#button_specs input
 			{
-				border: 0px;
-                width: 520px;
-                margin: 30px auto 50px auto;
+				outline: 0;
+				outline-style: none;
+				outline-width: 0;
 			}
-            .logo h1
-            {
-                font-size: 3.24em;
-                text-align: center;
-            }
 
             body
             {
                 font-size: 100%;
                 color: #eeeeee;
                 font-family: Times New Roman;
-                background-color: #858585;
+                background-color: #959595;
             }
+
+            .form
+            {
+                background-color: #909090;
+                margin: 0px auto 30px;
+                text-align: center;
+                width: 500px;
+                border: 0px solid #808080;
+            }
+
+			#img
+			{
+				height: 350px;
+				width: 542px;
+				margin: auto;
+			}
 
             input
             {
@@ -29,37 +43,38 @@
                 background-color: #999999;
             }
 
-            .nav
-            {
-                background-color: #909090;
-                margin: 50px auto 0px;
-                text-align: center;
-                width: 470px;
-                border: 0px solid black;
-                height: 130px;
-            }
-
-            .form
-            {
-                background-color: #909090;
-                margin: 50px auto;
-                text-align: center;
-                width: 500px;
-                border: 1px solid #909090;
-            }
-            .inner_form
-            {
-            	margin: auto;
-            }
-
-            .nav 
-            {
-			    list-style: none;
+			.logo
+			{
+				border: 0px solid #FFFFFF;
+                width: 542px;
+                margin: 0px auto 0px auto;
 			}
 
-/*			.nav #button_specs li a*/
-			#button_specs input,
-			.nav li a 
+            .logo h1
+            {
+                font-size: 3.24em;
+                text-align: center;
+            }
+
+            .nav
+            {
+                background-color: #959595;
+                margin: 0px auto 0px;
+                text-align: center;
+                width: 530px;
+                border: 1px solid #858585;
+                height: 50px;
+			    list-style: none;                
+            }
+
+			.nav li
+			{
+				float: left;
+				margin: 0px 20px;
+			}
+
+			.nav li a,
+			#button_specs input
 			{
 				font-family: Arial;
 				color: #ffffff;
@@ -78,80 +93,40 @@
 				background: -moz-linear-gradient(top, #909f94, #8c8584);
 			}
 
-			.nav li a:hover 
+			.nav li a:hover, 
+			#button_specs input:hover
 			{
 				background: -webkit-gradient(linear, 0 0, 0 100%, from(#8c8584), to(#909f94));
 				background: -moz-linear-gradient(top, #8c8584, #909f94);
 			}
-				​
-            #artist_form_ID
-            {
-                text-align: center;
-                margin: 15px auto;
-                width: 480px;
-            }
 
-            #album_form_ID
-            {
-                text-align: center;
-                margin: 15px auto;
-                width: 440px;
-            }
+			.table_class
+			{
+				width: 90%;
+				text-align: center;
+				margin: 0px auto;
+				border: 0px;
+			}
 
-            #search_form_ID
-            {
-                text-align: center;
-                margin: 15px auto;
-                width: 475px;
-            }
 			#text_box_ID
 			{
 				background-color: #FFFFFF;
 				width: 300px;
 			}
-            table
-            {
-                border: 0px;
-            }
 
-            .add_artist_button 
-            {
-                float: left;
-                margin: 35px 20px;
-            }
+			.save
+			{
+				margin: 10px auto 0px auto;
+			}
 
-            .add_album_button
-            {
-                float: left;
-                margin: 35px 20px;
-            }
-
-            .search_button 
-            {
-                float: left;
-                margin: 35px 20px;
-            }
-
-            .mysql_message
-            {
-                text-align: center;
-            }
         </style>
     </head>
     <body>
-    <!--/****************************************************************
-        on the server:
-        
-        http://ciswebs.smc.edu/cs85/asztalos_arpad_attil/createTables_ig.php
-        
-        ****************************************************************/
-    -->
 
 <?php
-	error_reporting(E_ALL);
+	error_reporting(0);
 
     //Aux. variables which hold html for various forms
-
     $createTablesForm = <<<EOT
 <form action="createTables_ig.php?pageAction=create_tables" method="post">
     <input type="hidden" name="submitted" value="true">
@@ -159,22 +134,95 @@
 </form>
 EOT;
 
-    $searchForm = <<<EOT
+	$PinkFloydForm = <<<EOT
+<form id="img">
+	<div>
+		<form action="createTables_ig.php?pageAction=" method="post">
+			<img src="pinkfloydgirls.jpg" alt="music is cool man..." height="300" width="550">
+		</form>
+	</div>
+</form>
+EOT;
+
+    $searchArtistForm = <<<EOT
 <div class="form">
-    <h1>Search</h1>
-    <p>Enter the title of the CD or name of the artist you want to find.</p>
-    <div class="inner_form">
-        <form action="createTables_ig.php?pageAction=search" method="POST">
+    <h1>Search Artist</h1>
+    <p>Enter the name of the artist you want to find.</p><br />
+    <div>
+        <form action="createTables_ig.php?pageAction=search_artist" method="post">
             <input type="hidden" name="submitted" value="true">
-            <table id="search_form_ID">
+            <table class="table_class">
                 <tr>
-                    <td>Title:</td>
-                    <td><input id="text_box_ID" type="text" name="title_or_name" maxlength="40" size="40"><br />
+                    <td>Artist First Name: </td>
+                    <td><input id="text_box_ID" type="text" name="first_name" maxlength="40" size="40"><br />
                     </td>
                 </tr>
                 <tr>
+                    <td>Artist Last Name: </td>
+                    <td><input id="text_box_ID" type="text" name="last_name" maxlength="40" size="40"><br />
+                    </td>
+                </tr>                
+                <tr>
                     <td colspan="2" id="button_specs">
-                    <p align="center"><input type="submit" value="Search" name="submit_album"></p>
+                    <p align="center"><input type="submit" value="Search Artist"></p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+EOT;
+
+    $searchBandForm = <<<EOT
+<div class="form">
+    <h1>Search Band</h1>
+    <p>Enter the title of the band you want to find.</p><br />
+    <div>
+        <form action="createTables_ig.php?pageAction=search_band" method="post">
+            <input type="hidden" name="submitted" value="true">
+            <table class="table_class">
+                <tr>
+                    <td>Band Name: </td>
+                    <td><input id="text_box_ID" type="text" name="band_name" maxlength="40" size="40"><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Band Member Name: </td>
+                    <td><input id="text_box_ID" type="text" name="member_name" maxlength="40" size="40"><br />
+                    </td>
+                </tr>                
+                <tr>
+                    <td colspan="2" id="button_specs">
+                    <p align="center"><input type="submit" value="Search Band"></p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+EOT;
+
+    $searchAlbumForm = <<<EOT
+<div class="form">
+    <h1>Search Album</h1>
+    <p>Enter the title of the album you want to find.</p><br />
+    <div>
+        <form action="createTables_ig.php?pageAction=search_album" method="post">
+            <input type="hidden" name="submitted" value="true">
+            <table class="table_class">
+                <tr>
+                    <td>Album Title: </td>
+                    <td><input id="text_box_ID" type="text" name="album_title" maxlength="40" size="40"><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Release Year: </td>
+                    <td><input id="text_box_ID" type="text" name="release_year" maxlength="40" size="40"><br />
+                    </td>
+                </tr>                
+                <tr>
+                    <td colspan="2" id="button_specs">
+                    <p align="center"><input type="submit" value="Search Album"></p>
                     </td>
                 </tr>
             </table>
@@ -185,11 +233,11 @@ EOT;
 		
     $addArtistForm = <<<EOT
 <div class="form">
-    <h1>New Artist</h1>
-    <div class="inner_form">	
-        <form action="createTables_ig.php?pageAction=add_artist" method="POST">
+    <h1>New Artist</h1><br />
+    <div>	
+        <form action="createTables_ig.php?pageAction=add_artist" method="post">
             <input type="hidden" name="submitted" value="true">
-            <table id="artist_form_ID">
+            <table class="table_class">
                 <tr>
                     <td align="right">Artist's first name:</td>
                     <td><input id="text_box_ID" type="text" name="first_name" maxlength="30" size="30"><br />
@@ -205,8 +253,8 @@ EOT;
                 </tr>
                 <tr>
                     <td colspan="2" id="button_specs">
-                        <p align="center">
-                            <input type="submit" value="Save" name="submit_artist">
+                        <p align="center" class="save">
+                            <input type="submit" value="Save">
                         </p>
                     </td>
                 </tr>
@@ -215,14 +263,60 @@ EOT;
     </div>
 </div>
 EOT;
-	
+
+    $addBandForm = <<<EOT
+<div class="form">
+    <h1>New Band</h1><br />
+    <div>
+        <form action="createTables_ig.php?pageAction=add_band" method="post">
+            <input type="hidden" name="submitted" value="true">
+            <table class="table_class">
+                <tr>
+                    <td align="right">Name of band:</td>
+                    <td><input id="text_box_ID" type="text" name="band_name" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Style:</td>
+                    <td><input id="text_box_ID" type="text" name="style" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Member1:</td>
+                    <td><input id="text_box_ID" type="text" name="member1" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Member2:</td>
+                    <td><input id="text_box_ID" type="text" name="member2" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Member3:</td>
+                    <td><input id="text_box_ID" type="text" name="member3" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Member4:</td>
+                    <td><input id="text_box_ID" type="text" name="member4" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td align="right">Member5:</td>
+                    <td><input id="text_box_ID" type="text" name="member5" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="button_specs">
+                        <p align="center" class="save"><input type="submit" value="Save"></p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+EOT;
+
     $addAlbumForm = <<<EOT
 <div class="form">
-    <h1>New Album</h1>
-    <div class="inner_form">
-        <form action="createTables_ig.php?pageAction=add_album" method="POST">
+    <h1>New Album</h1><br />
+    <div>
+        <form action="createTables_ig.php?pageAction=add_album" method="post">
             <input type="hidden" name="submitted" value="true">
-            <table id="album_form_ID">
+            <table class="table_class">
                 <tr>
                     <td align="right">Album title:</td>
                     <td><input id="text_box_ID" type="text" name="album_title" maxlength="30" size="30"><br /></td>
@@ -232,8 +326,12 @@ EOT;
                     <td><input id="text_box_ID" type="text" name="style" maxlength="30" size="30"><br /></td>
                 </tr>
                 <tr>
+                    <td align="right">Release Year:</td>
+                    <td><input id="text_box_ID" type="text" name="release_year" maxlength="30" size="30"><br /></td>
+                </tr>
+                <tr>
                     <td colspan="2" id="button_specs">
-                        <p align="center"><input type="submit" value="Save" name="submit_search"></p>
+                        <p align="center" class="save"><input type="submit" value="Save"></p>
                     </td>
                 </tr>
             </table>
@@ -242,9 +340,9 @@ EOT;
 </div>
 EOT;
 
-	include( 'db_connection_info.inc' );
+	include('db_connection_info.inc');
 
-	$conn = mysqli_connect( 'localhost', $cs85Username, $cs85Password, 'albums' );
+	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
 
     //page action
     $pageAction = $_GET['pageAction'];
@@ -255,89 +353,160 @@ EOT;
     $output = array(); //store output to display to the user later
 
     //decide which form to show
-    if ($pageAction == "create_tables") {
-        $formToDisplay = $createTablesForm;
+    if ($pageAction == "") {
+    	$formToDisplay = $PinkFloydForm;
+/*    } else if ($pageAction == "create_tables") {
+        $formToDisplay = $createTablesForm;*/
     } else if ($pageAction == "add_artist") {
         $formToDisplay = $addArtistForm;
+    } else if ($pageAction == "add_band") {
+        $formToDisplay = $addBandForm;
     } else if ($pageAction == "add_album") {
         $formToDisplay = $addAlbumForm;
-    } else if ($pageAction == "search") {
-        $formToDisplay = $searchForm;
+    } else if ($pageAction == "search_artist") {
+        $formToDisplay = $searchArtistForm;
+    } else if ($pageAction == "search_band") {
+        $formToDisplay = $searchBandForm;
+    } else if ($pageAction == "search_album") {
+        $formToDisplay = $searchAlbumForm;
     }
 		
     //actual logic to process submitted forms
-    if ($pageAction == "create_tables" && $_POST['submitted']) {
+    if ($pageAction == "create_tables"/* && $_POST['submitted']*/) {
         array_push($output, "Processing creating tables");
 
         $result = mysqli_query( $conn, '
             DROP TABLE IF EXISTS asztalos_arpad_attil_artist;
         ');
-
-        if ( !$result ) {
-            array_push($output, mysqli_error( $conn ));
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
         } else {
             array_push($output, "<div class='mysql_message'>table artist dropped<br /></div>");
         }
 
         $result = mysqli_query( $conn, '
+            DROP TABLE IF EXISTS asztalos_arpad_attil_band;
+        ');
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
+        } else {
+            array_push($output, "<div class='mysql_message'>table band dropped<br /></div>");
+        }
+
+        $result = mysqli_query( $conn, '
             DROP TABLE IF EXISTS asztalos_arpad_attil_album;
         ');
-
-        if ( !$result ) {
-            array_push($output, mysqli_error( $conn ));
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
         } else {
             array_push($output, "<div class='mysql_message'>table album dropped<br /></div>");
         }
 
-        $result = mysqli_query( $conn, '
-            CREATE TABLE asztalos_arpad_attil_artist(
-                artist_id int( 7 ),
-                firstName varchar( 15 ),
-                lastName varchar( 15 ),
-                style varchar( 25 ),
-                CONSTRAINT pk_artist_id PRIMARY KEY (artist_id)
-            );
+        $result = mysqli_query($conn, '
+            CREATE TABLE asztalos_arpad_attil_artist (
+                artist_id int(7) NOT NULL AUTO_INCREMENT,
+                first_name varchar(15) NOT NULL,
+                last_name varchar(15) NOT NULL,
+                style varchar(25),
+                CONSTRAINT pk_artist_id PRIMARY KEY (artist_id));
         ');
-
-        if ( !$result ) {
-            array_push($output, mysqli_error( $conn ));
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
         } else {
             array_push($output, "<div class='mysql_message'>table artist created<br /></div>");
         }
 
-        $result = mysqli_query( $conn, '
-            CREATE TABLE asztalos_arpad_attil_album( 
-                album_id int( 7 ),
-                album_title varchar( 30 ),
-                realease_year int( 4 ),
-                CONSTRAINT pk_album_id PRIMARY KEY (album_id)
-            );
+        $result = mysqli_query($conn, '
+            CREATE TABLE asztalos_arpad_attil_band (
+                band_id int(7) NOT NULL AUTO_INCREMENT,
+                band_name varchar(35) NOT NULL,
+                style varchar(25),
+                member1 varchar(35),
+                member2 varchar(35),                
+                member3 varchar(35),
+                member4 varchar(35),
+                member5 varchar(35),
+                CONSTRAINT pk_band_id PRIMARY KEY (band_id));
         ');
-        if ( !$result ) {
-            array_push($output, mysqli_error( $conn ));
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
+        } else {
+            array_push($output, "<div class='mysql_message'>table band created<br /></div>");
+        }
+
+        $result = mysqli_query($conn, '
+            CREATE TABLE asztalos_arpad_attil_album ( 
+                album_id int(7) NOT NULL AUTO_INCREMENT,
+                album_title varchar(30) NOT NULL,
+                style varchar(25),
+                release_year int(4),
+                CONSTRAINT pk_album_id PRIMARY KEY (album_id));
+        ');
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
         } else {
             array_push($output, "<div class='mysql_message'>table album created<br /></div>");
         }
 
     } else if ($pageAction == "add_artist" && $_POST['submitted']) {
-        array_push($output, "Processing adding an artist goes here");
+//        array_push($output, "Processing adding an artist");
+        $result = mysqli_query($conn, '
+        	INSERT INTO asztalos_arpad_attil_artist(
+        	first_name, last_name, style)
+        	VALUES ("'.$_POST['first_name'].'", "'.$_POST['last_name'].'", "'.$_POST['style'].'"
+        	);
+        ');
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
+            array_push($output, "You must at least enter the first name of the artist");
+        } else {
+            array_push($output, "<div class='mysql_message'>artist ".$_POST['first_name']." ".$_POST['last_name']." has been added</div>");
+        }
+
+    } else if ($pageAction == "add_band" && $_POST['submitted']) {
+//        array_push($output, "Processing adding a band");
+        $result = mysqli_query($conn, '
+        	INSERT INTO asztalos_arpad_attil_band(
+        	band_name, style, member1, member2, member3, member4, member5)
+        	VALUES ("'.$_POST['band_name'].'", "'.$_POST['style'].'", "'.$_POST['member1'].'", "'.$_POST['member2'].'", "'.$_POST['member3'].'", "'.$_POST['member4'].'", "'.$_POST['member5'].'"
+        	);
+        ');        
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
+            array_push($output, "You must at least enter the band's name");            
+        } else {
+            array_push($output, "<div class='mysql_message'>band ".$_POST['band_name']." has been added</div>");
+        }
+
     } else if ($pageAction == "add_album" && $_POST['submitted']) {
-        array_push($output, "Processing adding an album goes here");
-    } else if ($pageAction == "search" && $_POST['submitted']) {
-        array_push($output, "Processing a search goes here");
+//        array_push($output, "Processing adding an album");
+        $result = mysqli_query($conn, '
+        	INSERT INTO asztalos_arpad_attil_album(
+        	album_title, style, release_year)
+        	VALUES ("'.$_POST['album_title'].'", "'.$_POST['style'].'", "'.$_POST['release_year'].'"
+        	);
+        ');
+        if (!$result) {
+            array_push($output, mysqli_error($conn));
+            array_push($output, "You must at least enter the name of the album");            
+        } else {
+            array_push($output, "<div class='mysql_message'>album ".$_POST['album_title']." has been added</div>");
+        }
+
+    } else if ($pageAction == "search_band" && $_POST['submitted']) {
+        array_push($output, "Processing a band search");
+        
     }
 
 ?>
-
         <div class="logo">
-            <h1>M U Z I C W O R L D</h1>
+            <h1>M U S I C W O R L D</h1>
         </div>
         <div class="header_container">
 		    <ul class="nav">
-	<!--        <li class="add_DB_button" id="button_specs"><a href="createTables_ig.php?pageAction=create_tables">Create DB tables</a></li>-->
-		        <li class="add_artist_button" id="button_specs"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
-		        <li class="search_button" id="button_specs"><a href="createTables_ig.php?pageAction=search">Search</a></li>
-		        <li class="add_album_button" id="button_specs"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
+		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
+		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_band">Add New Band</a></li>		        
+		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
 		    </ul>
         </div>
         <div class="form_container">
@@ -346,6 +515,23 @@ EOT;
         <div class="server_output">
             <?php echo implode("<br>", $output) ?>
         </div>
+        <div id="footer_buttons">
+		    <ul class="nav">
+			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_artist">SrchArtist</a></li>
+			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_band">SrchBand</a></li>
+			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_album">SrchAlbum</a></li>
+		    	<li class="button_specs"><a href="createTables_ig.php?pageAction=create_tables">DB tables</a></li>
+		    </ul>
+		</div>
+<?php
+	if ( $pageAction != "") {
+		echo '
+		<div>
+			<ul class="nav">
+			    <li class="button_specs"><a href="createTables_ig.php?pageAction=">back to the naked ladies</a></li>
+			</ul>
+		</div> ';
+	}
+?>
     </body>
 </html>
-
