@@ -13,72 +13,91 @@
 				outline-width: 0;
 			}
 
-            body
-            {
-                font-size: 100%;
-                color: #eeeeee;
-                font-family: Times New Roman;
-                background-color: #959595;
-            }
+			body
+			{
+				font-size: 100%;
+				color: #eeeeee;
+				font-family: Times New Roman;
+				background-color: #959595;
+			}
 
-            .form
-            {
-                background-color: #909090;
-                margin: 0px auto 30px;
-                text-align: center;
-                width: 500px;
-                border: 0px solid #808080;
-            }
+			.form
+			{
+				background-color: #959595;
+				margin: 0px auto;
+				text-align: center;
+				width: 500px;
+				border: 0px solid #808080;
+			}
+
+			#header_container li
+			{
+				margin: 0px 41px;
+			}
 
 			#img
 			{
-				height: 350px;
-				width: 542px;
-				margin: auto;
+				height: 260px;
+				width: 470px;
+				margin: 0px auto;
+				border: 0px solid #FFFFFF;
 			}
 
-            input
-            {
-                color: #700000;
-                background-color: #999999;
-            }
+			#img img
+			{
+				height: 260px;
+				width: 470px;
+			}
+			
+			#img_div
+			{
+				height: 260px;
+				width: 470px;			
+				margin: 0px auto;
+			}
+
+			input
+			{
+				color: #700000;
+				background-color: #999999;
+			}
 
 			.logo
 			{
 				border: 0px solid #FFFFFF;
-                width: 542px;
-                margin: 0px auto 0px auto;
+				width: 500px;
+				margin: -30px auto -10px;
 			}
 
-            .logo h1
-            {
-                font-size: 3.24em;
-                text-align: center;
-            }
+			.logo h1
+			{
+				font-size: 3.13em;
+				text-align: center;
+			}
 
-            .nav
-            {
-                background-color: #959595;
-                margin: 0px auto 0px;
-                text-align: center;
-                width: 530px;
-                border: 1px solid #858585;
-                height: 50px;
-			    list-style: none;                
-            }
+			.nav
+			{
+				background-color: #959595;
+				margin: 0px auto 0px;
+				text-align: center;
+				width: 500px;
+				border: 0px solid #858585;
+				height: 50px;
+				list-style: none;                
+			}
 
 			.nav li
 			{
 				float: left;
-				margin: 0px 20px;
+				margin: 25px 25px 0px;
 			}
-
+			
 			.nav li a,
 			#button_specs input
 			{
 				font-family: Arial;
 				color: #ffffff;
-				font-size: 18px;
+				font-size: 15px;
 				padding: 1px;
 				text-decoration: none;
 				-webkit-border-radius: 5px;
@@ -100,6 +119,11 @@
 				background: -moz-linear-gradient(top, #8c8584, #909f94);
 			}
 
+			.page
+			{
+/*				width: 502px;*/
+			}
+
 			.table_class
 			{
 				width: 90%;
@@ -116,38 +140,40 @@
 
 			.save
 			{
-				margin: 10px auto 0px auto;
+				margin: 10px auto 0px;
 			}
 
-        </style>
-    </head>
-    <body>
+		</style>
+	</head>
+	<body>
 
 <?php
 	error_reporting(0);
 
-    //Aux. variables which hold html for various forms
-    $createTablesForm = <<<EOT
+	//Aux. variables which hold html for various forms
+	$createTablesForm = <<<EOT
 <form action="createTables_ig.php?pageAction=create_tables" method="post">
-    <input type="hidden" name="submitted" value="true">
-    <input type="submit" value="create db tables">
+	<input type="hidden" name="submitted" value="true">
+	<input type="submit" value="create db tables">
 </form>
 EOT;
 
 	$PinkFloydForm = <<<EOT
-<form id="img">
-	<div>
-		<form action="createTables_ig.php?pageAction=" method="post">
-			<img src="pinkfloydgirls.jpg" alt="music is cool man..." height="300" width="550">
-		</form>
+<form>
+	<div id="img">
+		<div id="img_div">
+			<form action="createTables_ig.php?pageAction=" method="post">
+				<img src="pinkfloydgirls.jpg" alt="music is cool man...">
+			</form>
+		</div>
 	</div>
 </form>
 EOT;
 
-    $searchArtistForm = <<<EOT
+	$searchArtistForm = <<<EOT
 <div class="form">
     <h1>Search Artist</h1>
-    <p>Enter the name of the artist you want to find.</p><br />
+    <p>Enter the name of the artist you want to find.</p>
     <div>
         <form action="createTables_ig.php?pageAction=search_artist" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -176,7 +202,7 @@ EOT;
     $searchBandForm = <<<EOT
 <div class="form">
     <h1>Search Band</h1>
-    <p>Enter the title of the band you want to find.</p><br />
+    <p>Enter the title of the band you want to find.</p>
     <div>
         <form action="createTables_ig.php?pageAction=search_band" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -205,7 +231,7 @@ EOT;
     $searchAlbumForm = <<<EOT
 <div class="form">
     <h1>Search Album</h1>
-    <p>Enter the title of the album you want to find.</p><br />
+    <p>Enter the title of the album you want to find.</p>
     <div>
         <form action="createTables_ig.php?pageAction=search_album" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -233,7 +259,7 @@ EOT;
 		
     $addArtistForm = <<<EOT
 <div class="form">
-    <h1>New Artist</h1><br />
+    <h1>New Artist</h1>
     <div>	
         <form action="createTables_ig.php?pageAction=add_artist" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -266,7 +292,7 @@ EOT;
 
     $addBandForm = <<<EOT
 <div class="form">
-    <h1>New Band</h1><br />
+    <h1>New Band</h1>
     <div>
         <form action="createTables_ig.php?pageAction=add_band" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -312,7 +338,7 @@ EOT;
 
     $addAlbumForm = <<<EOT
 <div class="form">
-    <h1>New Album</h1><br />
+    <h1>New Album</h1>
     <div>
         <form action="createTables_ig.php?pageAction=add_album" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -499,39 +525,41 @@ EOT;
     }
 
 ?>
-        <div class="logo">
-            <h1>M U S I C W O R L D</h1>
-        </div>
-        <div class="header_container">
-		    <ul class="nav">
-		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
-		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_band">Add New Band</a></li>		        
-		        <li class="button_specs"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
-		    </ul>
-        </div>
-        <div class="form_container">
-            <?php echo $formToDisplay ?>
-        </div>
-        <div class="server_output">
-            <?php echo implode("<br>", $output) ?>
-        </div>
-        <div id="footer_buttons">
-		    <ul class="nav">
-			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_artist">SrchArtist</a></li>
-			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_band">SrchBand</a></li>
-			    <li class="button_specs"><a href="createTables_ig.php?pageAction=search_album">SrchAlbum</a></li>
-		    	<li class="button_specs"><a href="createTables_ig.php?pageAction=create_tables">DB tables</a></li>
-		    </ul>
-		</div>
+		<div class="page">
+		    <div class="logo">
+		        <h1>M U S I C W O R L D</h1>
+		    </div>
+		    <div class="container" id="header_container">
+				<ul class="nav">
+					<li class="button_specs"><a href="createTables_ig.php?pageAction=search_artist">SrchArtist</a></li>
+					<li class="button_specs"><a href="createTables_ig.php?pageAction=search_band">SrchBand</a></li>
+					<li class="button_specs"><a href="createTables_ig.php?pageAction=search_album">SrchAlbum</a></li>
+				</ul>
+		    </div>
+		    <div class="container" id="form_container">
+		        <?php echo $formToDisplay ?>
+		    </div>
+		    <div class="server_output">
+		        <?php echo implode("<br>", $output) ?>
+		    </div>
+		    <div class="container" id="footer_container">
+				<ul class="nav">
+				    <li class="button_specs"><a href="createTables_ig.php?pageAction=add_artist">Add New Artist</a></li>
+				    <li class="button_specs"><a href="createTables_ig.php?pageAction=add_band">Add New Band</a></li>		        
+				    <li class="button_specs"><a href="createTables_ig.php?pageAction=add_album">Add New Album</a></li>
+				</ul>
+			</div>
 <?php
-	if ( $pageAction != "") {
-		echo '
-		<div>
-			<ul class="nav">
-			    <li class="button_specs"><a href="createTables_ig.php?pageAction=">back to the naked ladies</a></li>
-			</ul>
-		</div> ';
-	}
+		if ( $pageAction != "") {
+			echo '
+			<div>
+				<ul class="nav">
+					<li class="button_specs"><a href="createTables_ig.php?pageAction="> <- back to the naked ladies</a></li>
+					<li class="button_specs"><a href="createTables_ig.php?pageAction=create_tables">DB tables</a></li>			    
+				</ul>
+			</div> ';
+		}
 ?>
+		</div>
     </body>
 </html>
