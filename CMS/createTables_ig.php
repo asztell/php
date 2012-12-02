@@ -519,8 +519,18 @@ EOT;
             array_push($output, "<div class='mysql_message'>album ".$_POST['album_title']." has been added</div>");
         }
 
+    } else if ($pageAction == "search_artist" && $_POST['submitted']) {
+        array_push($output, "Processing an artist search");
+        
+    }
+
     } else if ($pageAction == "search_band" && $_POST['submitted']) {
         array_push($output, "Processing a band search");
+        
+    }
+
+    } else if ($pageAction == "search_album" && $_POST['submitted']) {
+        array_push($output, "Processing an album search");
         
     }
 
