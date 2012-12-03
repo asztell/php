@@ -366,7 +366,7 @@ EOT;
 </div>
 EOT;
 
-	function display_band(
+	function display(){
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
@@ -380,8 +380,7 @@ EOT;
 				}
 			}
 		echo "</table>";
-	);
-	$artistQueryResultForm = display_band();
+	};
 
 	include('db_connection_info.inc');
 
@@ -413,7 +412,11 @@ EOT;
     } else if ($pageAction == "display_artist_query") {
     	$formToDisplay = $artistQueryResultForm;
     }
-		
+
+	$artistQueryResultForm = display();
+	$bandQueryResultForm = display();
+	$albumQueryResultForm = display();
+
     //actual logic to process submitted forms
     if ($pageAction == "create_tables"/* && $_POST['submitted']*/) {
         array_push($output, "Processing creating tables");
