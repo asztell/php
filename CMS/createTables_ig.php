@@ -366,6 +366,23 @@ EOT;
 </div>
 EOT;
 
+	function display_band(
+		echo "<table border='0'>";
+			while($row = mysqli_fetch_assoc($result)) {
+				foreach ($row as $name => $value) {
+					$query_result = <<<EOT
+<tr>
+	<td>$name</td>
+	<td>:$value</td>
+</tr>
+EOT;
+					echo $query_result;
+				}
+			}
+		echo "</table>";
+	);
+	$artistQueryResultForm = display_band();
+
 	include('db_connection_info.inc');
 
 	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
@@ -381,8 +398,6 @@ EOT;
     //decide which form to show
     if ($pageAction == "") {
     	$formToDisplay = $PinkFloydForm;
-/*    } else if ($pageAction == "create_tables") {
-        $formToDisplay = $createTablesForm;*/
     } else if ($pageAction == "add_artist") {
         $formToDisplay = $addArtistForm;
     } else if ($pageAction == "add_band") {
@@ -395,6 +410,8 @@ EOT;
         $formToDisplay = $searchBandForm;
     } else if ($pageAction == "search_album") {
         $formToDisplay = $searchAlbumForm;
+    } else if ($pageAction == "display_artist_query") {
+    	$formToDisplay = $artistQueryResultForm;
     }
 		
     //actual logic to process submitted forms
@@ -533,21 +550,9 @@ EOT;
 					OR last_name = '$filter3'
 			;");
 		if (!$result) {
-            array_push($output, mysqli_error($conn));
-        } else {
-        	while($row = mysqli_fetch_assoc($result)) {
-				foreach ($row as $name => $value) {
-					$query_result = <<<EOT
-<table border='0'>
-	<tr>
-		<td>$name</td>
-		<td>:$value</td>
-	</tr>
-</table>
-EOT;
-					echo $query_result;
-				}
-			}
+			array_push($output, mysqli_error($conn));
+		} else {
+			$pageAction == "display_artist_query";
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
@@ -599,19 +604,19 @@ EOT;
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
+			echo "<table border='0'>";
         	while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
 					$query_result = <<<EOT
-<table border='0'>
 	<tr>
 		<td>$name</td>
 		<td>:$value</td>
 	</tr>
-</table>
 EOT;
 					echo $query_result;
 				}
 			}
+			echo "</table>";			
 		}
     }
 
