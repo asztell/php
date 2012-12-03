@@ -366,7 +366,7 @@ EOT;
 </div>
 EOT;
 
-	function display(){
+	$artistQueryResultForm = function display() {
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
@@ -413,7 +413,6 @@ EOT;
     	$formToDisplay = $artistQueryResultForm;
     }
 
-	$artistQueryResultForm = display();
 	$bandQueryResultForm = display();
 	$albumQueryResultForm = display();
 
@@ -555,7 +554,11 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-			$pageAction == "display_artist_query";
+			$pageAction = "display_artist_query";
+	<form action="createTables_ig.php?pageAction=create_tables" method="post">
+		<input type="hidden" name="submitted" value="true">
+		<input type="submit" value="create db tables">
+	</form>
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
