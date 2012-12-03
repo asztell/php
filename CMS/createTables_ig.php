@@ -366,6 +366,12 @@ EOT;
 </div>
 EOT;
 
+    /*
+     * QUESTION: How does display() know which query result to display?
+     * The way it is written, $result will be undefined. See:
+     *
+     * http://php.net/manual/en/language.variables.scope.php (local function scope)
+     */
 	function display(){
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
@@ -543,6 +549,29 @@ EOT;
 		array_push($output, "Processing an artist search");
 		$filter2 = filter_input(INPUT_POST, "first_name");
 		$filter3 = filter_input(INPUT_POST, "last_name");
+
+        /**
+         * QUESTION: for brevity, you can do something like this (assign alias to table)
+         *
+        SELECT
+            a.artist_id AS 'Artist id',
+            a.first_name AS 'First Name',
+            a.last_name AS 'Last Name',
+            a.style AS 'Style'
+        FROM
+            asztalos_arpad_attil_artist a
+        WHERE
+            first_name = '$filter2' OR
+            last_name = '$filter3'
+
+        
+        Also, I recommend that you use like operator instead of = to search,
+        E.g. first_name like '%$filter2%'. This way, if a user enters a partial
+        name, or enters it in all-caps, the artist will still be found.
+
+        http://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html#operator_like
+
+         */
 		$result = mysqli_query($conn, "
 				SELECT asztalos_arpad_attil_artist.artist_id AS 'Artist id',
 					asztalos_arpad_attil_artist.first_name AS 'First Name',
@@ -555,6 +584,10 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
+            /**
+             * QUESTION: are you aware that you're using a comparision operator
+             * and not an assignment operator here?
+             */
 			$pageAction == "display_artist_query";
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
