@@ -11,7 +11,7 @@
 //	$filter4 = mysql_real_escape_string($filter4);
 
 	$result = mysqli_query($conn, "
-		SELECT asztalos_arpad_attil_albums.album_id as 'Album ID',
+		SELECT asztalos_arpad_attil_album.album_id as 'Album ID',
 			asztalos_arpad_attil_album.album_title as 'Title',
 			asztalos_arpad_attil_album.release_year as 'Release Year',
 			asztalos_arpad_attil_artist.artist_id as 'Artist ID',

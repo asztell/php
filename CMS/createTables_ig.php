@@ -148,7 +148,7 @@
 	<body>
 
 <?php
-	error_reporting(0);
+	error_reporting(E_ALL);
 
 	//Aux. variables which hold html for various forms
 	$createTablesForm = <<<EOT
@@ -202,7 +202,7 @@ EOT;
     $searchBandForm = <<<EOT
 <div class="form">
     <h1>Search Band</h1>
-    <p>Enter the title of the band you want to find.</p>
+    <p>Enter the name of the band or name of band member you want to find.</p>
     <div>
         <form action="createTables_ig.php?pageAction=search_band" method="post">
             <input type="hidden" name="submitted" value="true">
@@ -213,7 +213,7 @@ EOT;
                     </td>
                 </tr>
                 <tr>
-                    <td>Band Member Name: </td>
+                    <td>One Band Member Full Name: </td>
                     <td><input id="text_box_ID" type="text" name="member_name" maxlength="40" size="40"><br />
                     </td>
                 </tr>                
@@ -519,19 +519,100 @@ EOT;
             array_push($output, "<div class='mysql_message'>album ".$_POST['album_title']." has been added</div>");
         }
 
-    } else if ($pageAction == "search_artist" && $_POST['submitted']) {
-        array_push($output, "Processing an artist search");
-        
-    }
-
-    } else if ($pageAction == "search_band" && $_POST['submitted']) {
-        array_push($output, "Processing a band search");
-        
-    }
-
+	} else if ($pageAction == "search_artist" && $_POST['submitted']) {
+		array_push($output, "Processing an artist search");
+		$filter2 = filter_input(INPUT_POST, "first_name");
+		$filter3 = filter_input(INPUT_POST, "last_name");
+		$result = mysqli_query($conn, "
+				SELECT asztalos_arpad_attil_artist.artist_id AS 'Artist id',
+					asztalos_arpad_attil_artist.first_name AS 'First Name',
+					asztalos_arpad_attil_artist.last_name AS 'Last Name',
+					asztalos_arpad_attil_artist.style AS 'Style'
+				FROM asztalos_arpad_attil_artist
+				WHERE first_name = '$filter2'
+					OR last_name = '$filter3'
+			;");
+		if (!$result) {
+            array_push($output, mysqli_error($conn));
+        } else {
+        	while($row = mysqli_fetch_assoc($result)) {
+				foreach ($row as $name => $value) {
+					$query_result = <<<EOT
+<table border='0'>
+	<tr>
+		<td>$name</td>
+		<td>:$value</td>
+	</tr>
+</table>
+EOT;
+					echo $query_result;
+				}
+			}
+		}
+	} else if ($pageAction == "search_band" && $_POST['submitted']) {
+		array_push($output, "Processing a band search");
+		$filter4 = filter_input(INPUT_POST, "band_name");
+		$filter5 = filter_input(INPUT_POST, "member_name");
+		$result = mysqli_query($conn, "
+				SELECT asztalos_arpad_attil_band.band_id AS 'Band ID',
+					asztalos_arpad_attil_band.band_name AS 'Band Name',
+					asztalos_arpad_attil_band.style AS 'Style',
+					asztalos_arpad_attil_band.member1,
+					asztalos_arpad_attil_band.member2,
+					asztalos_arpad_attil_band.member3,
+					asztalos_arpad_attil_band.member4,
+					asztalos_arpad_attil_band.member5
+				FROM asztalos_arpad_attil_band
+				WHERE band_name = '$filter4'
+					OR member1 = '$filter5'
+					OR member2 = '$filter5'
+					OR member3 = '$filter5'
+					OR member4 = '$filter5'
+					OR member5 = '$filter5'					
+			;");
+		if (!$result) {
+            array_push($output, mysqli_error($conn));
+        } else {
+        	while($row = mysqli_fetch_assoc($result)) {
+				foreach ($row as $name => $value) {
+					$query_result = <<<EOT
+<table border='0'>
+	<tr>
+		<td>$name</td>
+		<td>:$value</td>
+	</tr>
+</table>
+EOT;
+					echo $query_result;
+				}
+			}
+		}
     } else if ($pageAction == "search_album" && $_POST['submitted']) {
         array_push($output, "Processing an album search");
-        
+		$filter1 = filter_input(INPUT_POST, "album_title");
+		$result = mysqli_query($conn, "
+				SELECT asztalos_arpad_attil_album.album_title AS 'Album Title',
+					asztalos_arpad_attil_album.release_year AS 'Release Year'
+				FROM asztalos_arpad_attil_album
+				WHERE asztalos_arpad_attil_album.album_title = '$filter1'
+			;");
+		if (!$result) {
+            array_push($output, mysqli_error($conn));
+        } else {
+        	while($row = mysqli_fetch_assoc($result)) {
+				foreach ($row as $name => $value) {
+					$query_result = <<<EOT
+<table border='0'>
+	<tr>
+		<td>$name</td>
+		<td>:$value</td>
+	</tr>
+</table>
+EOT;
+					echo $query_result;
+				}
+			}
+		}
     }
 
 ?>
