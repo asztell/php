@@ -385,8 +385,7 @@ EOT;
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
-//    $searchResultDisplayString = array();
-    $searchResultDisplayString = "o";
+	$searchResultDisplayString = "";
     $output = array(); //store output to display to the user later
 	
 	function display($result) {
@@ -573,7 +572,6 @@ EOT;
 			array_push($output, mysqli_error($conn));
 		} else {
 //			echo "inside else clause @ line 562";
-			$searchResultDisplayString = "";
 			$searchResultDisplayString = display($result);
 			
 //			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
@@ -605,22 +603,10 @@ EOT;
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
-        	echo "inside else";
-        	while($row == mysqli_fetch_assoc($result)) {
-				foreach ($row as $name => $value) {
-					$query_result = <<<EOT
-<table border='0'>
-	<tr>
-		<td>$name</td>
-		<td>:$value</td>
-	</tr>
-</table>
-EOT;
-					echo $query_result;
-				}
-			}
+			$searchResultDisplayString = "";
+			$searchResultDisplayString = display($result);
 		}
-
+		
     } else if ($pageAction == "search_album" && $_POST['submitted']) {
         array_push($output, "Processing an album search");
 		$filter1 = filter_input(INPUT_POST, "album_title");
@@ -633,22 +619,10 @@ EOT;
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
-			echo "<table border='0'>";
-        	while($row == mysqli_fetch_assoc($result)) {
-				foreach ($row as $name => $value) {
-					$query_result = <<<EOT
-	<tr>
-		<td>$name</td>
-		<td>:$value</td>
-	</tr>
-EOT;
-					echo $query_result;
-				}
-			}
-			echo "</table>";			
+			$searchResultDisplayString = "";
+			$searchResultDisplayString = display($result);
 		}
-    }
-
+	}
 ?>
 		<div class="page">
 		    <div class="logo">
@@ -665,12 +639,15 @@ EOT;
 		        <?php
 		        	if ($pageAction == "search_artist"
 		        		&& $_POST['submitted']
-						&& strlen($searchResultDisplayString) >= 2
-						&& strlen($searchResultDisplayString) <= 60) {
-						echo "wrong artist name";
-		        	}else if (strlen($searchResultDisplayString) >= 60){
+						&& mysqli_num_rows() == 0) {
+						echo "<h4>wrong artist name</h4>";
+						echo "<h4>try again</h4>";
+		        	}else if ($pageAction == "search_artist" 
+		        		&& strlen($searchResultDisplayString) >= 60 
+		        		&& $_POST['submitted']) {
 			        	echo $searchResultDisplayString;
 		        	}
+
 		        	echo $formToDisplay;		        	
 		        ?>
 		    </div>
