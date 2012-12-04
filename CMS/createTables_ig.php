@@ -375,9 +375,29 @@ EOT;
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
+    $searchResultDisplayString = array();
     $searchResultDisplayString = "";
     $output = array(); //store output to display to the user later
 	
+	function display($result) {
+//		var_dump($result);
+		$output = "";
+		$output .= "<table border='0'>";
+		while($row == mysqli_fetch_assoc($result)) {
+		echo "inside while";
+			foreach ($row as $name => $value) {
+				$output .= <<<EOT
+<tr>
+	<td>$name</td>
+	<td>: $value</td>
+</tr>
+EOT;
+			}
+		}
+		$output .= "</table>";
+		return $output;
+	};
+
     //decide which form to show
     if ($pageAction == "") {
     	$formToDisplay = $PinkFloydForm;
@@ -534,35 +554,18 @@ EOT;
 					asztalos_arpad_attil_artist.last_name AS 'Last Name',
 					asztalos_arpad_attil_artist.style AS 'Style'
 				FROM asztalos_arpad_attil_artist
-				WHERE first_name LIKE '%$filter2%'
-					OR last_name LIKE '%$filter3%'
+				WHERE first_name LIKE '$filter2'
+					OR last_name LIKE '$filter3'
 			;");
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-			echo "inside else clause @ line 579";
-			function display($result) {
-		//		var_dump($result);
-				$output = "";
-				$output .= "<table border='0'>";
-				while($row = mysqli_fetch_assoc($result)) {
-				echo "inside while";
-					foreach ($row as $name => $value) {
-						$output .= '
-							<tr>
-								<td>'.$name.'</td>
-								<td>:'.$value.'</td>
-							</tr>
-						';
-					}
-				}
-				$output .= "</table>";
-				return $output;
-			};
-			
+			echo "inside else clause @ line 562";
 			$searchResultDisplayString = display($result);
+			
 			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
 			echo $searchResultDisplayString;
+			echo "bla";
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
@@ -588,7 +591,8 @@ EOT;
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
-        	while($row = mysqli_fetch_assoc($result)) {
+        	echo "inside else";
+        	while($row == mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
 					$query_result = <<<EOT
 <table border='0'>
@@ -602,6 +606,7 @@ EOT;
 				}
 			}
 		}
+
     } else if ($pageAction == "search_album" && $_POST['submitted']) {
         array_push($output, "Processing an album search");
 		$filter1 = filter_input(INPUT_POST, "album_title");
@@ -609,13 +614,13 @@ EOT;
 				SELECT asztalos_arpad_attil_album.album_title AS 'Album Title',
 					asztalos_arpad_attil_album.release_year AS 'Release Year'
 				FROM asztalos_arpad_attil_album
-				WHERE asztalos_arpad_attil_album.album_title LIKE '%$filter1%'
+				WHERE asztalos_arpad_attil_album.album_title = '$filter1'
 			;");
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
 			echo "<table border='0'>";
-        	while($row = mysqli_fetch_assoc($result)) {
+        	while($row == mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
 					$query_result = <<<EOT
 	<tr>
