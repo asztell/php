@@ -365,7 +365,7 @@ EOT;
     </div>
 </div>
 EOT;
-
+/*
 <<<<<<< HEAD
 	function display() {
 =======
@@ -376,7 +376,7 @@ EOT;
      * http://php.net/manual/en/language.variables.scope.php (local function scope)
      */
 	function display(){
->>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
+//>>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
@@ -583,16 +583,16 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //			array_push($output, display($result));
 			$searchResultDisplayString = display($result);
-=======
+//=======
             /**
              * QUESTION: are you aware that you're using a comparision operator
              * and not an assignment operator here?
              */
 			$pageAction == "display_artist_query";
->>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
+//>>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
