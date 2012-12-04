@@ -365,17 +365,6 @@ EOT;
     </div>
 </div>
 EOT;
-/*
-<<<<<<< HEAD
-	function display() {
-=======
-    /*
-     * QUESTION: How does display() know which query result to display?
-     * The way it is written, $result will be undefined. See:
-     *
-     * http://php.net/manual/en/language.variables.scope.php (local function scope)
-     */
-
 	include('db_connection_info.inc');
 
 	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
@@ -385,9 +374,19 @@ EOT;
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
-	$searchResultDisplayString = "";
+    $searchResultDisplayString = "";
 
 	function display($result) {
+        /**IG:
+         * in this function you must not echo out the output, but instead return it
+         * this way $searchResultDisplayString will have a value after display() has been called
+         * E.g.:
+         *
+         * $output = "";
+         * $output .= "<table border='0'>";
+         * ...
+         * $output .= "</table>";
+         */
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
