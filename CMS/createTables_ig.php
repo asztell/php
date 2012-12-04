@@ -375,14 +375,13 @@ EOT;
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
     $searchResultDisplayString = "";
-
+	$searchQueryString = "";
+	
 	function display($result) {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		var_dump($result);
-		$searchQueryString = "";
 		$searchQueryString .= "<table border='0'>";
 			while($row == mysqli_fetch_assoc($result)) {
-=======
         /**IG:
          * in this function you must not echo out the output, but instead return it
          * this way $searchResultDisplayString will have a value after display() has been called
@@ -395,7 +394,7 @@ EOT;
          */
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
->>>>>>> 65b9c0b25d1586f623c49df227157bea9288ccee
+
 				foreach ($row as $name => $value) {
 					$searchQueryString .= '
 <tr>
