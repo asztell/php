@@ -378,25 +378,6 @@ EOT;
     $searchResultDisplayString = "";
     $output = array(); //store output to display to the user later
 	
-	function display($result) {
-//		var_dump($result);
-		$output = "";
-		$output .= "<table border='0'>";
-		while($row = mysqli_fetch_assoc($result)) {
-		echo "inside while";
-			foreach ($row as $name => $value) {
-				$output .= '
-<tr>
-	<td>'.$name.'</td>
-	<td>:'.$value.'</td>
-</tr>
-';
-			}
-		}
-		$output .= "</table>";
-		return $output;
-	};
-
     //decide which form to show
     if ($pageAction == "") {
     	$formToDisplay = $PinkFloydForm;
@@ -560,6 +541,25 @@ EOT;
 			array_push($output, mysqli_error($conn));
 		} else {
 			echo "inside else clause @ line 579";
+			function display($result) {
+		//		var_dump($result);
+				$output = "";
+				$output .= "<table border='0'>";
+				while($row = mysqli_fetch_assoc($result)) {
+				echo "inside while";
+					foreach ($row as $name => $value) {
+						$output .= '
+							<tr>
+								<td>'.$name.'</td>
+								<td>:'.$value.'</td>
+							</tr>
+						';
+					}
+				}
+				$output .= "</table>";
+				return $output;
+			};
+			
 			$searchResultDisplayString = display($result);
 			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
 			echo $searchResultDisplayString;
