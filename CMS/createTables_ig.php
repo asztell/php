@@ -661,11 +661,7 @@ EOT;
 		    </div>
 		    <div class="container" id="form_container">
 		        <?php
-		        	if ($pageAction == "search_artist" && (strlen($searchResultDisplayString) <= 40) && (strlen($searchResultDisplayString) >= 2)) {
-		        		echo "You must enter a valid artist name!";
-		        	} else {
-			        	echo $searchResultDisplayString;
-		        	}
+		        	echo $searchResultDisplayString;
 		        	echo $formToDisplay;		        	
 		        ?>
 		    </div>
