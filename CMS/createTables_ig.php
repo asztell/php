@@ -365,6 +365,7 @@ EOT;
     </div>
 </div>
 EOT;
+
 	include('db_connection_info.inc');
 
 	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
@@ -375,28 +376,15 @@ EOT;
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
     $searchResultDisplayString = "";
-	$searchQueryString = "";
+    $output = array(); //store output to display to the user later
 	
 	function display($result) {
-//<<<<<<< HEAD
 		var_dump($result);
-		$searchQueryString .= "<table border='0'>";
-			while($row == mysqli_fetch_assoc($result)) {
-        /**IG:
-         * in this function you must not echo out the output, but instead return it
-         * this way $searchResultDisplayString will have a value after display() has been called
-         * E.g.:
-         *
-         * $output = "";
-         * $output .= "<table border='0'>";
-         * ...
-         * $output .= "</table>";
-         */
-		echo "<table border='0'>";
+		$output = "";
+		$output .= "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
-
 				foreach ($row as $name => $value) {
-					$searchQueryString .= '
+					$output .= '
 <tr>
 	<td>'.$name.'</td>
 	<td>:'.$value.'</td>
@@ -404,11 +392,9 @@ EOT;
 ';
 				}
 			}
-		$searchQueryString .= "</table>";
-		return $searchQueryString;
+		$output .= "</table>";
+		return $output;
 	};
-
-    $output = array(); //store output to display to the user later
 
     //decide which form to show
     if ($pageAction == "") {
