@@ -561,6 +561,7 @@ EOT;
 			echo "inside else clause @ line 579";
 			$searchResultDisplayString = display($result);
 			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
+			echo $searchResultDisplayString;
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
