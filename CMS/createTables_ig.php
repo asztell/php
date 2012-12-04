@@ -388,19 +388,21 @@ EOT;
 	$searchResultDisplayString = "";
 
 	function display($result) {
-		echo "<table border='0'>";
-			while($row = mysqli_fetch_assoc($result)) {
+		var_dump($result);
+		$searchQueryString = "";
+		$searchQueryString .= "<table border='0'>";
+			while($row == mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
-					$query_result = <<<EOT
+					$searchQueryString .= '
 <tr>
-	<td>$name</td>
-	<td>:$value</td>
+	<td>'.$name.'</td>
+	<td>:'.$value.'</td>
 </tr>
-EOT;
-					echo $query_result;
+';
 				}
 			}
-		echo "</table>";
+		$searchQueryString .= "</table>";
+		return $searchQueryString;
 	};
 
     $output = array(); //store output to display to the user later
@@ -552,16 +554,7 @@ EOT;
         SELECT
             a.artist_id AS 'Artist id',
             a.first_name AS 'First Name',
-            a.last_name AS 'Last Name',
-            a.style AS 'Style'
-        FROM
-            asztalos_arpad_attil_artist a
-        WHERE
-            first_name = '$filter2' OR
-            last_name = '$filter3'
-        Also, I recommend that you use like operator instead of = to search,
-        E.g. first_name like '%$filter2%'. This way, if a user enters a partial
-        name, or enters it in all-caps, the artist will still be found.
+            ......
         http://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html#operator_like
          */
 		$result = mysqli_query($conn, "
@@ -570,8 +563,8 @@ EOT;
 					asztalos_arpad_attil_artist.last_name AS 'Last Name',
 					asztalos_arpad_attil_artist.style AS 'Style'
 				FROM asztalos_arpad_attil_artist
-				WHERE first_name = '$filter2'
-					OR last_name = '$filter3'
+				WHERE first_name LIKE '%$filter2%'
+					OR last_name LIKE '%$filter3%'
 			;");
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
@@ -594,12 +587,12 @@ EOT;
 					asztalos_arpad_attil_band.member4,
 					asztalos_arpad_attil_band.member5
 				FROM asztalos_arpad_attil_band
-				WHERE band_name = '$filter4'
-					OR member1 = '$filter5'
-					OR member2 = '$filter5'
-					OR member3 = '$filter5'
-					OR member4 = '$filter5'
-					OR member5 = '$filter5'					
+				WHERE band_name LIKE '%$filter4%'
+					OR member1 LIKE '%$filter5%'
+					OR member2 LIKE '%$filter5%'
+					OR member3 LIKE '%$filter5%'
+					OR member4 LIKE '%$filter5%'
+					OR member5 LIKE '%$filter5%'					
 			;");
 		if (!$result) {
             array_push($output, mysqli_error($conn));
@@ -625,7 +618,7 @@ EOT;
 				SELECT asztalos_arpad_attil_album.album_title AS 'Album Title',
 					asztalos_arpad_attil_album.release_year AS 'Release Year'
 				FROM asztalos_arpad_attil_album
-				WHERE asztalos_arpad_attil_album.album_title = '$filter1'
+				WHERE asztalos_arpad_attil_album.album_title LIKE '%$filter1%'
 			;");
 		if (!$result) {
             array_push($output, mysqli_error($conn));
