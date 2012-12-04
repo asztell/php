@@ -593,33 +593,36 @@ EOT;
 					asztalos_arpad_attil_band.member4,
 					asztalos_arpad_attil_band.member5
 				FROM asztalos_arpad_attil_band
-				WHERE band_name LIKE '%$filter4%'
-					OR member1 LIKE '%$filter5%'
-					OR member2 LIKE '%$filter5%'
-					OR member3 LIKE '%$filter5%'
-					OR member4 LIKE '%$filter5%'
-					OR member5 LIKE '%$filter5%'					
+				WHERE band_name LIKE '$filter4'
+					OR member1 LIKE '$filter5'
+					OR member2 LIKE '$filter5'
+					OR member3 LIKE '$filter5'
+					OR member4 LIKE '$filter5'
+					OR member5 LIKE '$filter5'
 			;");
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
-			$searchResultDisplayString = "";
+//			$searchResultDisplayString = "";
 			$searchResultDisplayString = display($result);
 		}
 		
     } else if ($pageAction == "search_album" && $_POST['submitted']) {
         array_push($output, "Processing an album search");
 		$filter1 = filter_input(INPUT_POST, "album_title");
+		$filter6 = filter_input(INPUT_POST, "release_year");		
+		
 		$result = mysqli_query($conn, "
 				SELECT asztalos_arpad_attil_album.album_title AS 'Album Title',
 					asztalos_arpad_attil_album.release_year AS 'Release Year'
 				FROM asztalos_arpad_attil_album
-				WHERE asztalos_arpad_attil_album.album_title = '$filter1'
+				WHERE asztalos_arpad_attil_album.album_title LIKE '$filter1'
+				OR asztalos_arpad_attil_album.release_year LIKE '$filter6'
 			;");
 		if (!$result) {
             array_push($output, mysqli_error($conn));
         } else {
-			$searchResultDisplayString = "";
+//			$searchResultDisplayString = "";
 			$searchResultDisplayString = display($result);
 		}
 	}
@@ -639,16 +642,40 @@ EOT;
 		        <?php
 		        	if ($pageAction == "search_artist"
 		        		&& $_POST['submitted']
-						&& mysqli_num_rows() == 0) {
-						echo "<h4>wrong artist name</h4>";
-						echo "<h4>try again</h4>";
-		        	}else if ($pageAction == "search_artist" 
-		        		&& strlen($searchResultDisplayString) >= 60 
+						&& mysqli_num_rows($result) == 0) {
+							echo "<h4>wrong artist name</h4>";
+							echo "<h4>try again</h4>";
+		        	}else if ($pageAction == "search_artist"
+//		        		&& strlen($searchResultDisplayString) >= 60 
 		        		&& $_POST['submitted']) {
-			        	echo $searchResultDisplayString;
+				        	echo $searchResultDisplayString;
+		        	}
+		        	
+		        	if ($pageAction == "search_band"
+		        		&& $POST['submitted']
+		        		&& mysqli_num_rows($result) == 0) {
+							echo "<h4>wrong band name or member name</h4>";
+							echo "<h4>try again</h4>";							
+			        	echo $formToDisplay;
+		        	}else if ($pageAction == "search_band"
+//		        		&& strlen($searchResultDisplayString) >= 60 
+		        		&& $_POST['submitted']) {
+				        	echo $searchResultDisplayString;
 		        	}
 
-		        	echo $formToDisplay;		        	
+		        	
+		        	if ($pageAction == "search_album"
+		        		&& $_POST['submitted']
+		        		&& mysqli_num_rows($result) == 0) {
+							echo "<h4>wrong album name or year</h4>";
+							echo "<h4>try again</h4>";
+		        	}else if ($pageAction == "search_album"
+//		        		&& strlen($searchResultDisplayString) >= 60 
+		        		&& $_POST['submitted']) {
+				        	echo $searchResultDisplayString;
+		        	}
+					$searchResultDisplayString = "";
+					echo $formToDisplay;
 		        ?>
 		    </div>
 		    <div class="server_output">
