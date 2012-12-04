@@ -375,8 +375,19 @@ EOT;
      *
      * http://php.net/manual/en/language.variables.scope.php (local function scope)
      */
-	function display(){
-//>>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
+
+	include('db_connection_info.inc');
+
+	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
+
+    //page action
+    $pageAction = $_GET['pageAction'];
+
+    //figure out which form to display to the user based upon the page action
+    $formToDisplay = "";
+	$searchResultDisplayString = "";
+
+	function display($result) {
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
@@ -391,17 +402,6 @@ EOT;
 			}
 		echo "</table>";
 	};
-
-	include('db_connection_info.inc');
-
-	$conn = mysqli_connect('localhost', $cs85Username, $cs85Password, 'albums');
-
-    //page action
-    $pageAction = $_GET['pageAction'];
-
-    //figure out which form to display to the user based upon the page action
-    $formToDisplay = "";
-	$searchResultDisplayString = "";
 
     $output = array(); //store output to display to the user later
 
@@ -548,10 +548,7 @@ EOT;
 		array_push($output, "Processing an artist search");
 		$filter2 = filter_input(INPUT_POST, "first_name");
 		$filter3 = filter_input(INPUT_POST, "last_name");
-
-        /**
-         * QUESTION: for brevity, you can do something like this (assign alias to table)
-         *
+/*         * QUESTION: for brevity, you can do something like this (assign alias to table)
         SELECT
             a.artist_id AS 'Artist id',
             a.first_name AS 'First Name',
@@ -562,14 +559,10 @@ EOT;
         WHERE
             first_name = '$filter2' OR
             last_name = '$filter3'
-
-        
         Also, I recommend that you use like operator instead of = to search,
         E.g. first_name like '%$filter2%'. This way, if a user enters a partial
         name, or enters it in all-caps, the artist will still be found.
-
         http://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html#operator_like
-
          */
 		$result = mysqli_query($conn, "
 				SELECT asztalos_arpad_attil_artist.artist_id AS 'Artist id',
@@ -583,16 +576,9 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-//<<<<<<< HEAD
-//			array_push($output, display($result));
+			echo "inside else clause @ line 579";
 			$searchResultDisplayString = display($result);
-//=======
-            /**
-             * QUESTION: are you aware that you're using a comparision operator
-             * and not an assignment operator here?
-             */
-			$pageAction == "display_artist_query";
-//>>>>>>> e4b1db4a0ea6a7b244fc47d3b4d16ae8c4e5575d
+			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
@@ -673,9 +659,9 @@ EOT;
 				</ul>
 		    </div>
 		    <div class="container" id="form_container">
-		        <?php 
-		        	echo $formToDisplay;
+		        <?php
 		        	echo $searchResultDisplayString;
+		        	echo $formToDisplay;		        	
 		        ?>
 		    </div>
 		    <div class="server_output">
