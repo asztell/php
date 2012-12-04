@@ -386,7 +386,7 @@ EOT;
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
 //    $searchResultDisplayString = array();
-    $searchResultDisplayString = "o";
+//    $searchResultDisplayString = "o";
     $output = array(); //store output to display to the user later
 	
 	function display($result) {
