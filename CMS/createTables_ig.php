@@ -30,12 +30,12 @@
 				border: 0px solid #808080;
 			}
 			
-			#form_container
+			#form_container h4
 			{
 				text-align: center;
 			}
 			
-			#form_container table
+			#display_output_form table
 			{
 				margin: 0px auto;
 			}
@@ -386,13 +386,14 @@ EOT;
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
 //    $searchResultDisplayString = array();
-//    $searchResultDisplayString = "o";
+    $searchResultDisplayString = "o";
     $output = array(); //store output to display to the user later
 	
 	function display($result) {
 //		var_dump($result);
 		$output = "";
 		$output .= "<h4>Search returned the following results: </h4>";
+		$output .= "<div id='display_output_form'>";
 		$output .= "<table border='0'>";
 		while($row = mysqli_fetch_assoc($result)) {
 			foreach ($row as $name => $value) {
@@ -405,6 +406,7 @@ EOT;
 			}
 		}
 		$output .= "</table>";
+		$output .= "</div>";
 		return $output;
 	};
 
@@ -661,7 +663,14 @@ EOT;
 		    </div>
 		    <div class="container" id="form_container">
 		        <?php
-		        	echo $searchResultDisplayString;
+		        	if ($pageAction == "search_artist"
+		        		&& $_POST['submitted']
+						&& strlen($searchResultDisplayString) >= 2
+						&& strlen($searchResultDisplayString) <= 60) {
+						echo "wrong artist name";
+		        	}else if (strlen($searchResultDisplayString) >= 60){
+			        	echo $searchResultDisplayString;
+		        	}
 		        	echo $formToDisplay;		        	
 		        ?>
 		    </div>
