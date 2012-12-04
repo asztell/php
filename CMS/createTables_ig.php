@@ -366,7 +366,7 @@ EOT;
 </div>
 EOT;
 
-	$artistQueryResultForm = function display() {
+	function display() {
 		echo "<table border='0'>";
 			while($row = mysqli_fetch_assoc($result)) {
 				foreach ($row as $name => $value) {
@@ -391,6 +391,7 @@ EOT;
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
+	$searchResultDisplayString = "";
 
     $output = array(); //store output to display to the user later
 
@@ -409,12 +410,7 @@ EOT;
         $formToDisplay = $searchBandForm;
     } else if ($pageAction == "search_album") {
         $formToDisplay = $searchAlbumForm;
-    } else if ($pageAction == "display_artist_query") {
-    	$formToDisplay = $artistQueryResultForm;
     }
-
-	$bandQueryResultForm = display();
-	$albumQueryResultForm = display();
 
     //actual logic to process submitted forms
     if ($pageAction == "create_tables"/* && $_POST['submitted']*/) {
@@ -554,11 +550,8 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-			$pageAction = "display_artist_query";
-	<form action="createTables_ig.php?pageAction=create_tables" method="post">
-		<input type="hidden" name="submitted" value="true">
-		<input type="submit" value="create db tables">
-	</form>
+//			array_push($output, display($result));
+			$searchResultDisplayString = display($result);
 		}
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
@@ -639,7 +632,10 @@ EOT;
 				</ul>
 		    </div>
 		    <div class="container" id="form_container">
-		        <?php echo $formToDisplay ?>
+		        <?php 
+		        	echo $formToDisplay;
+		        	echo $searchResultDisplayString;
+		        ?>
 		    </div>
 		    <div class="server_output">
 		        <?php echo implode("<br>", $output) ?>
