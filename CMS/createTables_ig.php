@@ -29,6 +29,16 @@
 				width: 500px;
 				border: 0px solid #808080;
 			}
+			
+			#form_container
+			{
+				text-align: center;
+			}
+			
+			#form_container table
+			{
+				margin: 0px auto;
+			}
 
 			#header_container li
 			{
@@ -375,16 +385,16 @@ EOT;
 
     //figure out which form to display to the user based upon the page action
     $formToDisplay = "";
-    $searchResultDisplayString = array();
-    $searchResultDisplayString = "";
+//    $searchResultDisplayString = array();
+    $searchResultDisplayString = "o";
     $output = array(); //store output to display to the user later
 	
 	function display($result) {
 //		var_dump($result);
 		$output = "";
+		$output .= "<h4>Search returned the following results: </h4>";
 		$output .= "<table border='0'>";
-		while($row == mysqli_fetch_assoc($result)) {
-		echo "inside while";
+		while($row = mysqli_fetch_assoc($result)) {
 			foreach ($row as $name => $value) {
 				$output .= <<<EOT
 <tr>
@@ -538,7 +548,7 @@ EOT;
         }
 
 	} else if ($pageAction == "search_artist" && $_POST['submitted']) {
-		array_push($output, "Processing an artist search");
+//		array_push($output, "Processing an artist search");
 		$filter2 = filter_input(INPUT_POST, "first_name");
 		$filter3 = filter_input(INPUT_POST, "last_name");
 /*         * QUESTION: for brevity, you can do something like this (assign alias to table)
@@ -560,13 +570,15 @@ EOT;
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
-			echo "inside else clause @ line 562";
+//			echo "inside else clause @ line 562";
+			$searchResultDisplayString = "";
 			$searchResultDisplayString = display($result);
 			
-			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
-			echo $searchResultDisplayString;
-			echo "bla";
+//			echo "strlen(\$searchResultDisplayString) = ".strlen($searchResultDisplayString);
+//			echo $searchResultDisplayString;
+//			echo "bla";
 		}
+	
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
 		array_push($output, "Processing a band search");
 		$filter4 = filter_input(INPUT_POST, "band_name");
@@ -649,7 +661,11 @@ EOT;
 		    </div>
 		    <div class="container" id="form_container">
 		        <?php
-		        	echo $searchResultDisplayString;
+		        	if ($pageAction == "search_artist" && (strlen($searchResultDisplayString) <= 40) && (strlen($searchResultDisplayString) >= 2)) {
+		        		echo "You must enter a valid artist name!";
+		        	} else {
+			        	echo $searchResultDisplayString;
+		        	}
 		        	echo $formToDisplay;		        	
 		        ?>
 		    </div>
