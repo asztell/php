@@ -552,7 +552,7 @@ EOT;
 //		array_push($output, "Processing an artist search");
 		$filter2 = filter_input(INPUT_POST, "first_name");
 		$filter3 = filter_input(INPUT_POST, "last_name");
-/*         * QUESTION: for brevity, you can do something like this (assign alias to table)
+/*assign alias to table)
         SELECT
             a.artist_id AS 'Artist id',
             a.first_name AS 'First Name',
@@ -580,7 +580,7 @@ EOT;
 		}
 	
 	} else if ($pageAction == "search_band" && $_POST['submitted']) {
-		array_push($output, "Processing a band search");
+//		array_push($output, "Processing a band search");
 		$filter4 = filter_input(INPUT_POST, "band_name");
 		$filter5 = filter_input(INPUT_POST, "member_name");
 		$result = mysqli_query($conn, "
@@ -608,7 +608,7 @@ EOT;
 		}
 		
     } else if ($pageAction == "search_album" && $_POST['submitted']) {
-        array_push($output, "Processing an album search");
+//        array_push($output, "Processing an album search");
 		$filter1 = filter_input(INPUT_POST, "album_title");
 		$filter6 = filter_input(INPUT_POST, "release_year");		
 		
@@ -655,15 +655,13 @@ EOT;
 		        		&& $POST['submitted']
 		        		&& mysqli_num_rows($result) == 0) {
 							echo "<h4>wrong band name or member name</h4>";
-							echo "<h4>try again</h4>";							
-			        	echo $formToDisplay;
+							echo "<h4>try again</h4>";
 		        	}else if ($pageAction == "search_band"
 //		        		&& strlen($searchResultDisplayString) >= 60 
 		        		&& $_POST['submitted']) {
 				        	echo $searchResultDisplayString;
 		        	}
 
-		        	
 		        	if ($pageAction == "search_album"
 		        		&& $_POST['submitted']
 		        		&& mysqli_num_rows($result) == 0) {
@@ -674,7 +672,9 @@ EOT;
 		        		&& $_POST['submitted']) {
 				        	echo $searchResultDisplayString;
 		        	}
+
 					$searchResultDisplayString = "";
+
 					echo $formToDisplay;
 		        ?>
 		    </div>
