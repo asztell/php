@@ -35,6 +35,6 @@
 		
 	SELECT asztalos_arpad_attil_classes.title, asztalos_arpad_attil_instructors.name FROM asztalos_arpad_attil_classes, asztalos_arpad_attil_instructors
 	WHERE asztalos_arpad_attil_classes.instructor_id = asztalos_arpad_attil_instructors.instructor_id
-	AND asztalos_arpad_attil_classes.title LIKE 'programming',
+	AND asztalos_arpad_attil_classes.title LIKE 'programming'
 	ORDER BY asztalos_arpad_attil_classes.title;
 
