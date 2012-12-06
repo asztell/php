@@ -89,7 +89,7 @@ EOT;
 
 		$result = mysqli_query($conn, "
 			CREATE TABLE IF NOT EXISTS $i(
-				instructor_id int(4) NOT NULL AUTO_INCREMENT,
+				instructor_id int(4) NOT NULL,
 				name varchar(8) NOT NULL,
 				phone int(4) NOT NULL,
 				office varchar(5) NOT NULL,
@@ -116,10 +116,11 @@ EOT;
 				course_number varchar(4) NOT NULL,
 				title varchar(19) NOT NULL,
 				instructor_id int(4) NOT NULL,
-				PRIMARY KEY (section),
-				FOREIGN KEY (instructor_id) REFERENCES $i(instructor_id)
+				PRIMARY KEY (section)
 			);
 		");
+//				,				FOREIGN KEY (instructor_id) REFERENCES $i(instructor_id)
+		
 		if (!$result) {
 		    array_push($output, mysqli_error($conn));
 		} else {
@@ -151,21 +152,22 @@ EOT;
 		    array_push($output, mysqli_error($conn));
 		}
 
-		if ($pageAction == "$sr") {
+	} else if ($pageAction == "" && $_POST["$s"]) {
 			$filter2 = filter_input(INPUT_POST, "$sn");
 			$result = mysqli_query($conn, "
 				SELECT $c.course_number, $c.title, $i.name
 				FROM $c, $i
-				WHERE $c.section = '$sn';
+				WHERE $c.instructor_id = $i.instructor_id
+				AND $c.section = '$sn';
 
 			");
 			if (!$result) {
 				array_push($output, mysqli_error($conn));
 			} else {
+				$pageAction = "$sr";
 				$display = display($result);
 			}
 
-		}
 	}
 
 	//decide which form to show
@@ -182,9 +184,7 @@ EOT;
 			<div class="container" id="form_container">
 				<?php
 					if ($_POST["$s"]) {
-						if ($pageAction == "") {
-							echo $search;
-						} else {
+						if ($pageAction == $sr) {
 							echo $display;
 						}
 					}
@@ -193,7 +193,9 @@ EOT;
 				?>
 			</div>
 			<div class="server_output">
-				<?php echo implode("<br>", $output) ?>
+				<?php echo implode("<br>", $output);
+					$output = "";
+				?>
 			</div>
 
 	</body>
