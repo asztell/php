@@ -33,8 +33,13 @@
 		(4119, 'CS60', 'Database Concepts', 2),
 		(4128, 'CS85', 'PHP Programming', 3);
 		
-	SELECT asztalos_arpad_attil_classes.title, asztalos_arpad_attil_instructors.name FROM asztalos_arpad_attil_classes, asztalos_arpad_attil_instructors
-	WHERE asztalos_arpad_attil_classes.instructor_id = asztalos_arpad_attil_instructors.instructor_id
-	AND asztalos_arpad_attil_classes.title LIKE 'programming'
-	ORDER BY asztalos_arpad_attil_classes.title;
+	SELECT 
+		asztalos_arpad_attil_classes.title, asztalos_arpad_attil_instructors.name 	
+	FROM 
+		asztalos_arpad_attil_classes, asztalos_arpad_attil_instructors
+	WHERE 
+		asztalos_arpad_attil_classes.instructor_id = asztalos_arpad_attil_instructors.instructor_id
+		AND asztalos_arpad_attil_classes.title LIKE 'programming'
+	ORDER BY 
+		asztalos_arpad_attil_classes.title;
 
