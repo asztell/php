@@ -154,9 +154,9 @@ EOT;
 		if ($pageAction == "$sr") {
 			$filter2 = filter_input(INPUT_POST, "$sn");
 			$result = mysqli_query($conn, "
-				SELECT classes.course_number, classes.title, instructors.name
-				FROM classes, instructors
-				WHERE classes.section = '$sn';
+				SELECT $c.course_number, $c.title, $i.name
+				FROM $c, $i
+				WHERE $c.section = '$sn';
 
 			");
 			if (!$result) {
