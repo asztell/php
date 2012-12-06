@@ -22,7 +22,7 @@
 		(instructor_id, name, phone, office)
 	VALUES 
 		(1, 'Dehkhoda', 4629, 'B220E'),
-		(2, 'Rogler', 8472, 'B220J')
+		(2, 'Rogler', 8472, 'B220J'),
 		(3, 'Geddes', 4628, 'B220T');
 	
 	INSERT INTO asztalos_arpad_attil_classes
