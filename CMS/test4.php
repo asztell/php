@@ -164,7 +164,7 @@ EOT;
 			if (!$result) {
 				array_push($output, mysqli_error($conn));
 			} else {
-				$pageAction = "$sr";
+				$pageAction = $sr;
 				$display = display($result);
 			}
 
