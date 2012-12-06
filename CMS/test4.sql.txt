@@ -1,0 +1,38 @@
+
+	USE classes;
+
+	CREATE IF NOT EXISTS asztalos_arpad_attil_instructors(
+		instructor_id int(4) NOT NULL AUTO_INCREMENT,
+		name varchar(8) NOT NULL,
+		phone int(4) NOT NULL,
+		office varchar(5) NOT NULL,
+		PRIMARY KEY (instructor_id)
+	);
+
+	CREATE IF NOT EXISTS asztalos_arpad_attil_classes(
+		section int(4) NOT NULL,
+		course_number varchar(4) NOT NULL,
+		title varchar(19) NOT NULL,
+		instructor_id int(4) NOT NULL,
+		PRIMARY KEY (instructor_id),
+		FOREIGN KEY (instructor_id) REFERENCES asztalos_arpad_attil_instructors(instructor_id)
+	);
+	
+	INSERT INTO asztalos_arpad_attil_instructors
+		(instructor_id, name, phone, office)
+	VALUES 
+		(1, 'Dehkhoda', 4629, 'B220E'),
+		(2, 'Rogler', 8472, 'B220J')
+		(3, 'Geddes', 4628, 'B220T');
+	
+	INSERT INTO asztalos_arpad_attil_classes
+		(section, course_number, title, instructor_id)
+	VALUES
+		(1441, 'CS80', 'Internet Programming', 3),
+		(4118, 'CS55', 'Java Programming', 1),
+		(4119, 'CS60', 'Database Concepts', 2),
+		(4128, 'CS85', 'PHP Programming', 3);
+		
+	SELECT classes.title, professors.name FROM classes, name
+	WHERE classes.title LIKE 'programming'
+	ORDER BY classes.title;
