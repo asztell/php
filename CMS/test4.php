@@ -33,7 +33,7 @@
 		            </tr>
 		            <tr>
 		                <td colspan="2" id="$bs">
-		                <p align="center"><input type="submit" value="Search Artist"></p>
+		                <p align="center"><input type="submit" value="Search"></p>
 		                </td>
 		            </tr>
 		        </table>
