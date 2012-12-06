@@ -14,7 +14,7 @@
 		course_number varchar(4) NOT NULL,
 		title varchar(19) NOT NULL,
 		instructor_id int(4) NOT NULL,
-		PRIMARY KEY (instructor_id),
+		PRIMARY KEY (section),
 		FOREIGN KEY (instructor_id) REFERENCES asztalos_arpad_attil_instructors(instructor_id)
 	);
 	
