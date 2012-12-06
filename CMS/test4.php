@@ -153,21 +153,21 @@ EOT;
 		}
 
 	} else if ($pageAction == "" && $_POST["$s"]) {
-			$filter2 = filter_input(INPUT_POST, "$sn");
-			$result = mysqli_query($conn, "
-				SELECT $c.course_number, $c.title, $i.name
-				FROM $c, $i
-				WHERE $c.instructor_id = $i.instructor_id
-				AND $c.section = '$sn';
+		echo "inside search else if";
+		$filter2 = filter_input(INPUT_POST, "$sn");
+		$result = mysqli_query($conn, "
+			SELECT $c.course_number, $c.title, $i.name
+			FROM $c, $i
+			WHERE $c.instructor_id = $i.instructor_id
+			AND $c.section = '$sn';
 
-			");
-			if (!$result) {
-				array_push($output, mysqli_error($conn));
-			} else {
-				$pageAction = $sr;
-				$display = display($result);
-			}
-
+		");
+		if (!$result) {
+			array_push($output, mysqli_error($conn));
+		} else {
+			$pageAction = $sr;
+			$display = display($result);
+		}
 	}
 
 	//decide which form to show
