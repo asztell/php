@@ -77,7 +77,7 @@ EOT;
 		return $output;
 	};
 
-	if ($pageAction == "") {
+	if ($pageAction == "" && !$_POST["$s"]) {
 
 		$result = mysqli_query($conn, "
 			DROP TABLE IF EXISTS $i;");
@@ -153,28 +153,22 @@ EOT;
 		}
 
 	} else if ($pageAction == "" && $_POST["$s"]) {
-		echo "inside search else if";
+//		echo "inside search else if";
 		$filter2 = filter_input(INPUT_POST, "$sn");
+//		echo $filter2;
 		$result = mysqli_query($conn, "
 			SELECT $c.course_number, $c.title, $i.name
 			FROM $c, $i
 			WHERE $c.instructor_id = $i.instructor_id
-			AND $c.section = '$sn';
+			AND $c.section = '$filter2';
 
 		");
 		if (!$result) {
 			array_push($output, mysqli_error($conn));
 		} else {
 			$pageAction = $sr;
-			$display = display($result);
+			$displayResult = display($result);
 		}
-	}
-
-	//decide which form to show
-	if ($pageAction == "") {
-	 $formToDisplay = $search;
-	} else if ($pageAction == $sr) {
-	    $formToDisplay = $display;
 	}
 
 ?>
@@ -185,11 +179,16 @@ EOT;
 				<?php
 					if ($_POST["$s"]) {
 						if ($pageAction == $sr) {
-							echo $display;
+							if (mysqli_num_rows($result) == 0) {
+								echo "<h4>wrong section number</h4>";
+								echo "<h4>try again</h4>";
+							} else {
+								echo $displayResult;
+							}
 						}
 					}
 					$display = "";
-					echo $formToDisplay;
+					echo $search;
 				?>
 			</div>
 			<div class="server_output">
